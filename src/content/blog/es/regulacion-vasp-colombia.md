@@ -1,6 +1,6 @@
 ---
 title: 'Regulación VASP en Colombia: lo que necesitas saber'
-slug: 'regulacion-vasp-colombia'
+urlSlug: 'regulacion-vasp-colombia'
 publishDate: 2026-05-28
 summary: 'Un repaso del marco regulatorio actual para proveedores de servicios de activos virtuales (VASP) en Colombia, incluyendo UIAF, SARLAFT y SAGRILAFT.'
 tags: ['regulación', 'UIAF', 'Colombia']

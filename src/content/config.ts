@@ -6,7 +6,7 @@ const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().min(1).max(120),
-    slug: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case only'),
+    urlSlug: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case only'),
     publishDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     summary: z.string().min(20).max(300),

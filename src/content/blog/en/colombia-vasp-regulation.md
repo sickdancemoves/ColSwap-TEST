@@ -1,6 +1,6 @@
 ---
 title: 'VASP regulation in Colombia: what you need to know'
-slug: 'colombia-vasp-regulation'
+urlSlug: 'colombia-vasp-regulation'
 publishDate: 2026-05-28
 summary: 'A walkthrough of the current regulatory framework for virtual asset service providers (VASPs) in Colombia, including UIAF, SARLAFT, and SAGRILAFT.'
 tags: ['regulation', 'UIAF', 'Colombia']
