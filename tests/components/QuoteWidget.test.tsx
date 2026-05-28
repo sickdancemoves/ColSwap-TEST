@@ -25,7 +25,7 @@ describe('QuoteWidget', () => {
       expect(screen.getByText(/recibes/i)).toBeInTheDocument();
     }, { timeout: 1000 });
 
-    expect(screen.getByText(/tasa/i)).toBeInTheDocument();
+    expect(screen.getByText(/^tasa:/i)).toBeInTheDocument();
   });
 
   it('switches pair when the select changes', async () => {
