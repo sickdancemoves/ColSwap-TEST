@@ -1,0 +1,44 @@
+---
+// src/components/nav/LanguageSwitcher.astro
+import { type Locale, t } from '@/i18n/t';
+import routeMap from '@/i18n/route-map.json';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
+const mapKey = (locale === 'es' ? 'es-to-en' : 'en-to-es') as 'es-to-en' | 'en-to-es';
+const map = routeMap[mapKey] as Record<string, string>;
+const normalized = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+const otherPath = map[normalized] ?? (otherLocale === 'es' ? '/' : '/en/');
+const href = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${otherPath}`;
+---
+<a
+  href={href}
+  hreflang={otherLocale === 'es' ? 'es-CO' : 'en'}
+  rel="alternate"
+  class="lang-switcher"
+  aria-label={t('lang.switchTo', otherLocale)}
+>
+  {t('lang.switchTo', locale)}
+</a>
+
+<style>
+  .lang-switcher {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-ink-600);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-paper-200);
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .lang-switcher:hover {
+    background: var(--color-yellow-100);
+    color: var(--color-ink-900);
+  }
+</style>

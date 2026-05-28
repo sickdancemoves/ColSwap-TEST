@@ -1,0 +1,18 @@
+---
+// src/layouts/PageLayout.astro
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/nav/Header.astro';
+import Footer from '@/components/nav/Footer.astro';
+import type { MetaInput } from '@/lib/seo/meta';
+
+interface Props extends MetaInput {}
+
+const props = Astro.props;
+---
+<BaseLayout {...props}>
+  <Header locale={props.locale} currentPath={props.currentPath} />
+  <main>
+    <slot />
+  </main>
+  <Footer locale={props.locale} />
+</BaseLayout>
