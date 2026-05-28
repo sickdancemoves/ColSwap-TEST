@@ -71,4 +71,15 @@
     margin-inline: auto;
     padding-inline: clamp(1rem, 4vw, 2rem);
   }
+
+  .page-section {
+    padding-block: 64px 80px;
+  }
+
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
 }

@@ -2,11 +2,11 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n/t';
-const locale = 'es' as const;
+const locale = 'en' as const;
 ---
 <PageLayout
   locale={locale}
-  currentPath="/contacto/"
+  currentPath="/en/contact/"
   title={t('contact.title', locale)}
   description={t('contact.subtitle', locale)}
 >
@@ -18,12 +18,12 @@ const locale = 'es' as const;
       <article class="contact-card">
         <Icon name="lucide:briefcase" class="contact-icon" />
         <h3>{t('contact.sales', locale)}</h3>
-        <a href="mailto:ventas@colswap.tech">ventas@colswap.tech</a>
+        <a href="mailto:sales@colswap.tech">sales@colswap.tech</a>
       </article>
       <article class="contact-card">
         <Icon name="lucide:mail" class="contact-icon" />
         <h3>{t('contact.general', locale)}</h3>
-        <a href="mailto:hola@colswap.tech">hola@colswap.tech</a>
+        <a href="mailto:hello@colswap.tech">hello@colswap.tech</a>
       </article>
     </div>
   </section>
@@ -31,28 +31,10 @@ const locale = 'es' as const;
 
 <style>
   .lede { margin-bottom: 32px; }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .contact-card {
-    padding: 28px;
-    border: 1px solid var(--color-paper-200);
-    border-radius: var(--radius-lg);
-    background: var(--color-paper-50);
-  }
+  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .contact-card { padding: 28px; border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); background: var(--color-paper-50); }
   .contact-card h3 { margin: 12px 0 8px; }
-  .contact-icon {
-    width: 28px;
-    height: 28px;
-    color: var(--color-red-500);
-  }
-  .contact-card a {
-    color: var(--color-ink-900);
-    font-weight: 600;
-  }
-  @media (max-width: 700px) {
-    .contact-grid { grid-template-columns: 1fr; }
-  }
+  .contact-icon { width: 28px; height: 28px; color: var(--color-red-500); }
+  .contact-card a { color: var(--color-ink-900); font-weight: 600; }
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
 </style>
