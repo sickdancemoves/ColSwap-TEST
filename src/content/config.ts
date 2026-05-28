@@ -32,7 +32,7 @@ const legal = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().min(1),
-    slug: z.enum([
+    urlSlug: z.enum([
       'terminos',
       'privacidad',
       'aml',
