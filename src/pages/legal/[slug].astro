@@ -11,11 +11,14 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props { doc: CollectionEntry<'legal'>; }
+interface Props {
+  doc: CollectionEntry<'legal'>;
+}
 const { doc } = Astro.props;
 const { Content } = await doc.render();
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath={`/legal/${doc.data.urlSlug}/`}
@@ -26,8 +29,11 @@ const locale = 'es' as const;
     <header class="legal-header">
       <h1>{doc.data.title}</h1>
       <p class="meta">
-        {t('legal.lastUpdated', locale)}: {doc.data.lastUpdated.toLocaleDateString('es-CO', { dateStyle: 'long' })}
-        · {t('legal.version', locale)} {doc.data.version}
+        {t('legal.lastUpdated', locale)}: {
+          doc.data.lastUpdated.toLocaleDateString('es-CO', { dateStyle: 'long' })
+        }
+        · {t('legal.version', locale)}
+        {doc.data.version}
       </p>
     </header>
     <div class="prose">
@@ -37,10 +43,26 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .legal { max-width: 70ch; }
-  .legal-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--color-paper-200); }
-  .meta { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .prose :global(h1) { display: none; }
-  .prose :global(h2) { margin-top: 32px; }
-  .prose :global(p) { margin-bottom: 16px; color: var(--color-ink-700); }
+  .legal {
+    max-width: 70ch;
+  }
+  .legal-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-paper-200);
+  }
+  .meta {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .prose :global(h1) {
+    display: none;
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
 </style>

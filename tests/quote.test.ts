@@ -41,16 +41,24 @@ describe('getQuote', () => {
   });
 
   it('rejects non-positive amounts', async () => {
-    await expect(getQuote({ pairId: 'COP-USDT', amount: 0, side: 'from' })).rejects.toThrow(/positive/);
-    await expect(getQuote({ pairId: 'COP-USDT', amount: -1, side: 'from' })).rejects.toThrow(/positive/);
+    await expect(getQuote({ pairId: 'COP-USDT', amount: 0, side: 'from' })).rejects.toThrow(
+      /positive/
+    );
+    await expect(getQuote({ pairId: 'COP-USDT', amount: -1, side: 'from' })).rejects.toThrow(
+      /positive/
+    );
   });
 
   it('rejects amounts below the pair minimum', async () => {
-    await expect(getQuote({ pairId: 'COP-USDT', amount: 1000, side: 'from' })).rejects.toThrow(/minimum/);
+    await expect(getQuote({ pairId: 'COP-USDT', amount: 1000, side: 'from' })).rejects.toThrow(
+      /minimum/
+    );
   });
 
   it('rejects unknown pairId', async () => {
     // @ts-expect-error testing runtime guard
-    await expect(getQuote({ pairId: 'XYZ-COP', amount: 100, side: 'from' })).rejects.toThrow(/pair/i);
+    await expect(getQuote({ pairId: 'XYZ-COP', amount: 100, side: 'from' })).rejects.toThrow(
+      /pair/i
+    );
   });
 });

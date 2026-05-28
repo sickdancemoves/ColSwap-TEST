@@ -32,9 +32,8 @@ export function parseAmount(input: string, locale: Locale): number {
   const cleaned = input.trim();
   if (cleaned.length === 0) return NaN;
 
-  const normalized = locale === 'es'
-    ? cleaned.replace(/\./g, '').replace(',', '.')
-    : cleaned.replace(/,/g, '');
+  const normalized =
+    locale === 'es' ? cleaned.replace(/\./g, '').replace(',', '.') : cleaned.replace(/,/g, '');
 
   const num = Number(normalized);
   return Number.isFinite(num) ? num : NaN;

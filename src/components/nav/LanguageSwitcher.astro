@@ -16,6 +16,7 @@ const normalized = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
 const otherPath = map[normalized] ?? (otherLocale === 'es' ? '/' : '/en/');
 const href = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${otherPath}`;
 ---
+
 <a
   href={href}
   hreflang={otherLocale === 'es' ? 'es-CO' : 'en'}
@@ -35,7 +36,9 @@ const href = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${otherPath}`;
     padding: 6px 10px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-paper-200);
-    transition: background 120ms ease, color 120ms ease;
+    transition:
+      background 120ms ease,
+      color 120ms ease;
   }
   .lang-switcher:hover {
     background: var(--color-yellow-100);

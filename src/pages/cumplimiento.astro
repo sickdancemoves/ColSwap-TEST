@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/cumplimiento/"
@@ -15,28 +16,43 @@ const locale = 'es' as const;
 
     <div class="callout">
       <h3>Registro UIAF</h3>
-      <p>ColSwap está en proceso de registro como sujeto obligado en el Sistema de Información para el Reporte de Operaciones (SIREL) administrado por la Unidad de Información y Análisis Financiero.</p>
+      <p>
+        ColSwap está en proceso de registro como sujeto obligado en el Sistema de Información para
+        el Reporte de Operaciones (SIREL) administrado por la Unidad de Información y Análisis
+        Financiero.
+      </p>
     </div>
 
     <div class="callout">
       <h3>Programa AML</h3>
-      <p>Identificación de clientes (KYC para personas naturales, KYB para empresas), monitoreo continuo de transacciones, procedimientos de detección y reporte de operaciones sospechosas.</p>
+      <p>
+        Identificación de clientes (KYC para personas naturales, KYB para empresas), monitoreo
+        continuo de transacciones, procedimientos de detección y reporte de operaciones sospechosas.
+      </p>
     </div>
 
     <div class="callout">
       <h3>Reportes regulatorios</h3>
-      <p>Reportes mensuales agregados que igualen o superen USD 450, reportes individuales que superen USD 150, y reportes de clientes activos / inactivos.</p>
+      <p>
+        Reportes mensuales agregados que igualen o superen USD 450, reportes individuales que
+        superen USD 150, y reportes de clientes activos / inactivos.
+      </p>
     </div>
 
     <div class="callout">
       <h3>SARLAFT / SAGRILAFT</h3>
-      <p>Aplicamos lineamientos SARLAFT como buena práctica. Implementaremos SAGRILAFT si superamos los umbrales aplicables, conforme a la regulación de la Superintendencia de Sociedades.</p>
+      <p>
+        Aplicamos lineamientos SARLAFT como buena práctica. Implementaremos SAGRILAFT si superamos
+        los umbrales aplicables, conforme a la regulación de la Superintendencia de Sociedades.
+      </p>
     </div>
   </section>
 </PageLayout>
 
 <style>
-  .lede { margin-bottom: 32px; }
+  .lede {
+    margin-bottom: 32px;
+  }
   .callout {
     padding: 24px;
     margin-bottom: 16px;
@@ -44,6 +60,11 @@ const locale = 'es' as const;
     background: var(--color-paper-50);
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
-  .callout h3 { margin: 0 0 8px; }
-  .callout p { margin: 0; color: var(--color-ink-700); }
+  .callout h3 {
+    margin: 0 0 8px;
+  }
+  .callout p {
+    margin: 0;
+    color: var(--color-ink-700);
+  }
 </style>

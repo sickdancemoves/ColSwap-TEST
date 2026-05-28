@@ -32,14 +32,7 @@ const legal = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().min(1),
-    urlSlug: z.enum([
-      'terminos',
-      'privacidad',
-      'aml',
-      'cookies',
-      'terms',
-      'privacy',
-    ]),
+    urlSlug: z.enum(['terminos', 'privacidad', 'aml', 'cookies', 'terms', 'privacy']),
     lastUpdated: z.coerce.date(),
     version: z.string().regex(/^\d+\.\d+\.\d+$/, 'semver'),
     locale: localeEnum,

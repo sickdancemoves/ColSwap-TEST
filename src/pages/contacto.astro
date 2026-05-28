@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/contacto/"
@@ -30,7 +31,9 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .lede { margin-bottom: 32px; }
+  .lede {
+    margin-bottom: 32px;
+  }
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -42,7 +45,9 @@ const locale = 'es' as const;
     border-radius: var(--radius-lg);
     background: var(--color-paper-50);
   }
-  .contact-card h3 { margin: 12px 0 8px; }
+  .contact-card h3 {
+    margin: 12px 0 8px;
+  }
   .contact-icon {
     width: 28px;
     height: 28px;
@@ -53,6 +58,8 @@ const locale = 'es' as const;
     font-weight: 600;
   }
   @media (max-width: 700px) {
-    .contact-grid { grid-template-columns: 1fr; }
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

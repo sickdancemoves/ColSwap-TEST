@@ -4,6 +4,7 @@ import { t } from '@/i18n/t';
 import SalesContactCTA from '@/components/cta/SalesContactCTA.astro';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/empresas/"
@@ -17,19 +18,31 @@ const locale = 'es' as const;
     <div class="features">
       <article>
         <h3>KYB acompañado</h3>
-        <p>Nuestro equipo te guía paso a paso por el proceso de verificación de la empresa, los UBOs y las cuentas operativas.</p>
+        <p>
+          Nuestro equipo te guía paso a paso por el proceso de verificación de la empresa, los UBOs
+          y las cuentas operativas.
+        </p>
       </article>
       <article>
         <h3>Ejecutivo dedicado</h3>
-        <p>Un punto de contacto único para tu operación, cotizaciones, reportes y resolución de incidencias.</p>
+        <p>
+          Un punto de contacto único para tu operación, cotizaciones, reportes y resolución de
+          incidencias.
+        </p>
       </article>
       <article>
         <h3>Reportes operativos</h3>
-        <p>Reportes mensuales con todas tus operaciones, tasas aplicadas, tiempos de ejecución y trazabilidad para tu contabilidad.</p>
+        <p>
+          Reportes mensuales con todas tus operaciones, tasas aplicadas, tiempos de ejecución y
+          trazabilidad para tu contabilidad.
+        </p>
       </article>
       <article>
         <h3>Integración fiat-cripto</h3>
-        <p>Operamos con PSE a través de SoyPago para entradas COP y con proveedores de liquidez globales para la salida cripto.</p>
+        <p>
+          Operamos con PSE a través de SoyPago para entradas COP y con proveedores de liquidez
+          globales para la salida cripto.
+        </p>
       </article>
     </div>
   </section>
@@ -37,7 +50,9 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px; }
+  .page-section {
+    padding-block: 64px;
+  }
   .features {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -49,9 +64,16 @@ const locale = 'es' as const;
     border-radius: var(--radius-lg);
     background: var(--color-paper-50);
   }
-  .features h3 { margin: 0 0 8px; }
-  .features p { margin: 0; color: var(--color-ink-600); }
+  .features h3 {
+    margin: 0 0 8px;
+  }
+  .features p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
   @media (max-width: 720px) {
-    .features { grid-template-columns: 1fr; }
+    .features {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

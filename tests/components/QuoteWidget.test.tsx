@@ -21,9 +21,12 @@ describe('QuoteWidget', () => {
     const input = screen.getByLabelText(/envías/i) as HTMLInputElement;
     fireEvent.change(input, { target: { value: '1.000.000' } });
 
-    await waitFor(() => {
-      expect(screen.getByText(/recibes/i)).toBeInTheDocument();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.getByText(/recibes/i)).toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
 
     expect(screen.getByText(/^tasa:/i)).toBeInTheDocument();
   });
@@ -39,9 +42,12 @@ describe('QuoteWidget', () => {
     render(<QuoteWidget {...baseProps} />);
     const input = screen.getByLabelText(/envías/i) as HTMLInputElement;
     fireEvent.change(input, { target: { value: '500' } });
-    await waitFor(() => {
-      expect(screen.getByRole('alert')).toHaveTextContent(/minimum|mínimo/i);
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.getByRole('alert')).toHaveTextContent(/minimum|mínimo/i);
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('renders English labels when locale is "en"', () => {
@@ -54,11 +60,14 @@ describe('QuoteWidget', () => {
     render(<QuoteWidget {...baseProps} />);
     fireEvent.change(screen.getByLabelText(/envías/i), { target: { value: '1.000.000' } });
 
-    await waitFor(() => {
-      const link = screen.getByRole('link', { name: /continuar/i }) as HTMLAnchorElement;
-      expect(link.href).toContain('app.colswap.tech/request');
-      expect(link.href).toContain('pair=COP-USDT');
-      expect(link.href).toContain('amount=1000000');
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        const link = screen.getByRole('link', { name: /continuar/i }) as HTMLAnchorElement;
+        expect(link.href).toContain('app.colswap.tech/request');
+        expect(link.href).toContain('pair=COP-USDT');
+        expect(link.href).toContain('amount=1000000');
+      },
+      { timeout: 1000 }
+    );
   });
 });

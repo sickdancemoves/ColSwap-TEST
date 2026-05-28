@@ -9,6 +9,7 @@ interface Props extends MetaInput {}
 
 const props = Astro.props;
 ---
+
 <BaseLayout {...props}>
   <Header locale={props.locale} currentPath={props.currentPath} />
   <main>

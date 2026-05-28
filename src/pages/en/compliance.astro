@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/compliance/"
@@ -15,30 +16,55 @@ const locale = 'en' as const;
 
     <div class="callout">
       <h3>UIAF registration</h3>
-      <p>ColSwap is in the process of registering as an obligated entity in the SIREL reporting system, administered by Colombia's Financial Information and Analysis Unit (UIAF).</p>
+      <p>
+        ColSwap is in the process of registering as an obligated entity in the SIREL reporting
+        system, administered by Colombia's Financial Information and Analysis Unit (UIAF).
+      </p>
     </div>
 
     <div class="callout">
       <h3>AML program</h3>
-      <p>Customer identification (KYC for individuals, KYB for businesses), continuous transaction monitoring, suspicious-operation detection and reporting procedures.</p>
+      <p>
+        Customer identification (KYC for individuals, KYB for businesses), continuous transaction
+        monitoring, suspicious-operation detection and reporting procedures.
+      </p>
     </div>
 
     <div class="callout">
       <h3>Regulatory reporting</h3>
-      <p>Monthly aggregate reports that meet or exceed USD 450, individual reports above USD 150, and active / inactive client reports.</p>
+      <p>
+        Monthly aggregate reports that meet or exceed USD 450, individual reports above USD 150, and
+        active / inactive client reports.
+      </p>
     </div>
 
     <div class="callout">
       <h3>SARLAFT / SAGRILAFT</h3>
-      <p>We apply SARLAFT guidelines as best practice. We will implement SAGRILAFT if we exceed the applicable thresholds, in line with the Superintendency of Companies' regulation.</p>
+      <p>
+        We apply SARLAFT guidelines as best practice. We will implement SAGRILAFT if we exceed the
+        applicable thresholds, in line with the Superintendency of Companies' regulation.
+      </p>
     </div>
   </section>
 </PageLayout>
 
 <style>
   /* Override lede margin */
-  .lede { margin-bottom: 32px; }
-  .callout { padding: 24px; margin-bottom: 16px; border-left: 4px solid var(--color-red-500); background: var(--color-paper-50); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
-  .callout h3 { margin: 0 0 8px; }
-  .callout p { margin: 0; color: var(--color-ink-700); }
+  .lede {
+    margin-bottom: 32px;
+  }
+  .callout {
+    padding: 24px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--color-red-500);
+    background: var(--color-paper-50);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  .callout h3 {
+    margin: 0 0 8px;
+  }
+  .callout p {
+    margin: 0;
+    color: var(--color-ink-700);
+  }
 </style>

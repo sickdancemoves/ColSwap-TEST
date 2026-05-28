@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/contact/"
@@ -30,11 +31,35 @@ const locale = 'en' as const;
 </PageLayout>
 
 <style>
-  .lede { margin-bottom: 32px; }
-  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .contact-card { padding: 28px; border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); background: var(--color-paper-50); }
-  .contact-card h3 { margin: 12px 0 8px; }
-  .contact-icon { width: 28px; height: 28px; color: var(--color-red-500); }
-  .contact-card a { color: var(--color-ink-900); font-weight: 600; }
-  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+  .lede {
+    margin-bottom: 32px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .contact-card {
+    padding: 28px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .contact-card h3 {
+    margin: 12px 0 8px;
+  }
+  .contact-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--color-red-500);
+  }
+  .contact-card a {
+    color: var(--color-ink-900);
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

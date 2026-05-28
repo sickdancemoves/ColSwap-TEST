@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/precios/"
@@ -54,8 +55,13 @@ const locale = 'es' as const;
     border-color: var(--color-yellow-500);
     background: var(--color-yellow-100);
   }
-  .tier h3 { margin: 0 0 8px; }
-  .tier-desc { color: var(--color-ink-600); margin: 0 0 24px; }
+  .tier h3 {
+    margin: 0 0 8px;
+  }
+  .tier-desc {
+    color: var(--color-ink-600);
+    margin: 0 0 24px;
+  }
   .spread {
     font-size: var(--text-xl);
     font-weight: 700;
@@ -87,6 +93,8 @@ const locale = 'es' as const;
     font-weight: 700;
   }
   @media (max-width: 700px) {
-    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

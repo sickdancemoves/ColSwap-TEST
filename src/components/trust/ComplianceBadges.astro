@@ -2,7 +2,9 @@
 // src/components/trust/ComplianceBadges.astro
 import { Icon } from 'astro-icon/components';
 import { type Locale, t } from '@/i18n/t';
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 
 const badges = [
@@ -12,22 +14,28 @@ const badges = [
   { iconName: 'lucide:building', titleKey: 'home.trust.kyb' as const },
 ];
 ---
+
 <section class="trust">
   <div class="container-page">
     <h2 class="trust-title">{t('home.trust.title', locale)}</h2>
     <ul class="badges">
-      {badges.map((b) => (
-        <li class="badge">
-          <Icon name={b.iconName} class="badge-icon" />
-          <span>{t(b.titleKey, locale)}</span>
-        </li>
-      ))}
+      {
+        badges.map((b) => (
+          <li class="badge">
+            <Icon name={b.iconName} class="badge-icon" />
+            <span>{t(b.titleKey, locale)}</span>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </section>
 
 <style>
-  .trust { padding-block: 64px; background: var(--color-paper-100); }
+  .trust {
+    padding-block: 64px;
+    background: var(--color-paper-100);
+  }
   .trust-title {
     text-align: center;
     font-size: var(--text-md);
@@ -63,6 +71,8 @@ const badges = [
     color: var(--color-red-500);
   }
   @media (max-width: 760px) {
-    .badges { grid-template-columns: repeat(2, 1fr); }
+    .badges {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

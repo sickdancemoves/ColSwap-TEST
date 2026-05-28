@@ -10,20 +10,22 @@ const { locale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
 
-const legalLinks = locale === 'es'
-  ? [
-      { href: '/legal/terminos/', key: 'footer.legal.terms' as const },
-      { href: '/legal/privacidad/', key: 'footer.legal.privacy' as const },
-      { href: '/legal/aml/', key: 'footer.legal.aml' as const },
-      { href: '/legal/cookies/', key: 'footer.legal.cookies' as const },
-    ]
-  : [
-      { href: '/en/legal/terms/', key: 'footer.legal.terms' as const },
-      { href: '/en/legal/privacy/', key: 'footer.legal.privacy' as const },
-      { href: '/en/legal/aml/', key: 'footer.legal.aml' as const },
-      { href: '/en/legal/cookies/', key: 'footer.legal.cookies' as const },
-    ];
+const legalLinks =
+  locale === 'es'
+    ? [
+        { href: '/legal/terminos/', key: 'footer.legal.terms' as const },
+        { href: '/legal/privacidad/', key: 'footer.legal.privacy' as const },
+        { href: '/legal/aml/', key: 'footer.legal.aml' as const },
+        { href: '/legal/cookies/', key: 'footer.legal.cookies' as const },
+      ]
+    : [
+        { href: '/en/legal/terms/', key: 'footer.legal.terms' as const },
+        { href: '/en/legal/privacy/', key: 'footer.legal.privacy' as const },
+        { href: '/en/legal/aml/', key: 'footer.legal.aml' as const },
+        { href: '/en/legal/cookies/', key: 'footer.legal.cookies' as const },
+      ];
 ---
+
 <footer class="site-footer">
   <div class="container-page footer-inner">
     <div class="footer-brand">
@@ -36,11 +38,13 @@ const legalLinks = locale === 'es'
 
     <nav class="footer-legal" aria-label="Legal">
       <ul>
-        {legalLinks.map((link) => (
-          <li>
-            <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
-          </li>
-        ))}
+        {
+          legalLinks.map((link) => (
+            <li>
+              <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
 
@@ -72,11 +76,21 @@ const legalLinks = locale === 'es'
   .brand-mark {
     width: 24px;
     height: 24px;
-    background: linear-gradient(135deg, var(--color-yellow-500) 0 60%, var(--color-red-500) 60% 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-yellow-500) 0 60%,
+      var(--color-red-500) 60% 100%
+    );
     border-radius: var(--radius-sm);
   }
-  .brand-name { font-weight: 700; color: var(--color-paper-50); }
-  .brand-tag { font-size: var(--text-xs); color: var(--color-ink-400); }
+  .brand-name {
+    font-weight: 700;
+    color: var(--color-paper-50);
+  }
+  .brand-tag {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
 
   .footer-legal ul {
     list-style: none;
@@ -91,7 +105,9 @@ const legalLinks = locale === 'es'
     text-decoration: none;
     font-size: var(--text-xs);
   }
-  .footer-legal a:hover { color: var(--color-yellow-500); }
+  .footer-legal a:hover {
+    color: var(--color-yellow-500);
+  }
 
   .footer-meta {
     text-align: right;
@@ -103,7 +119,11 @@ const legalLinks = locale === 'es'
   }
 
   @media (max-width: 700px) {
-    .footer-inner { grid-template-columns: 1fr; }
-    .footer-meta { text-align: left; }
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+    .footer-meta {
+      text-align: left;
+    }
   }
 </style>

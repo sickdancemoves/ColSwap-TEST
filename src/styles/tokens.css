@@ -5,31 +5,31 @@
  */
 @theme {
   /* Brand — Colombian yellow */
-  --color-yellow-100: #FFF7CC;
-  --color-yellow-300: #FFE56B;
-  --color-yellow-500: #FFD100;
-  --color-yellow-700: #D6A800;
-  --color-yellow-900: #8A6B00;
+  --color-yellow-100: #fff7cc;
+  --color-yellow-300: #ffe56b;
+  --color-yellow-500: #ffd100;
+  --color-yellow-700: #d6a800;
+  --color-yellow-900: #8a6b00;
 
   /* Accent — Colombian red */
-  --color-red-100: #FBDCE1;
-  --color-red-300: #E8616F;
-  --color-red-500: #C8102E;
-  --color-red-700: #8E0B20;
+  --color-red-100: #fbdce1;
+  --color-red-300: #e8616f;
+  --color-red-500: #c8102e;
+  --color-red-700: #8e0b20;
 
   /* Neutrals — warm-paper rather than stark white */
-  --color-ink-900: #0E0E10;
-  --color-ink-700: #2A2A2E;
-  --color-ink-600: #4A4A52;
-  --color-ink-400: #8A8A92;
-  --color-ink-200: #C8C8CE;
-  --color-paper-50: #FAFAF7;
-  --color-paper-100: #F2EFE7;
-  --color-paper-200: #E9E5DA;
-  --color-paper-900: #1A1A1C;
+  --color-ink-900: #0e0e10;
+  --color-ink-700: #2a2a2e;
+  --color-ink-600: #4a4a52;
+  --color-ink-400: #8a8a92;
+  --color-ink-200: #c8c8ce;
+  --color-paper-50: #fafaf7;
+  --color-paper-100: #f2efe7;
+  --color-paper-200: #e9e5da;
+  --color-paper-900: #1a1a1c;
 
   /* Semantic */
-  --color-success: #1B7F3B;
+  --color-success: #1b7f3b;
   --color-warning: var(--color-yellow-700);
   --color-danger: var(--color-red-500);
 

@@ -4,8 +4,9 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 
-const items = (await getCollection('faqs', ({ data }) => data.locale === 'en'))
-  .sort((a, b) => a.data.order - b.data.order);
+const items = (await getCollection('faqs', ({ data }) => data.locale === 'en')).sort(
+  (a, b) => a.data.order - b.data.order
+);
 
 const categories = ['general', 'compliance', 'fees', 'process', 'security'] as const;
 const grouped = categories.map((cat) => ({
@@ -13,6 +14,7 @@ const grouped = categories.map((cat) => ({
   items: items.filter((i) => i.data.category === cat),
 }));
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/faqs/"
@@ -22,35 +24,75 @@ const grouped = categories.map((cat) => ({
   <section class="container-page page-section">
     <h1>{t('faqs.title', locale)}</h1>
 
-    {grouped.filter((g) => g.items.length > 0).map((group) => (
-      <div class="category-block">
-        <h2>{t(`faqs.category.${group.category}` as const, locale)}</h2>
-        <div class="faq-list">
-          {group.items.map(async (entry) => {
-            const { Content } = await entry.render();
-            return (
-              <details class="faq">
-                <summary>{entry.data.question}</summary>
-                <div class="answer">
-                  <Content />
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </div>
-    ))}
+    {
+      grouped
+        .filter((g) => g.items.length > 0)
+        .map((group) => (
+          <div class="category-block">
+            <h2>{t(`faqs.category.${group.category}` as const, locale)}</h2>
+            <div class="faq-list">
+              {group.items.map(async (entry) => {
+                const { Content } = await entry.render();
+                return (
+                  <details class="faq">
+                    <summary>{entry.data.question}</summary>
+                    <div class="answer">
+                      <Content />
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </div>
+        ))
+    }
   </section>
 </PageLayout>
 
 <style>
-  .category-block { margin-bottom: 32px; }
-  .category-block h2 { margin: 24px 0 12px; font-size: var(--text-md); color: var(--color-ink-600); }
-  .faq-list { display: grid; gap: 8px; }
-  .faq { border: 1px solid var(--color-paper-200); border-radius: var(--radius-md); background: var(--color-paper-50); overflow: hidden; }
-  .faq summary { list-style: none; cursor: pointer; padding: 16px 20px; font-weight: 600; color: var(--color-ink-900); position: relative; }
-  .faq summary::after { content: '+'; position: absolute; right: 20px; top: 14px; font-size: var(--text-md); color: var(--color-red-500); font-weight: 700; }
-  .faq[open] summary::after { content: '−'; }
-  .faq .answer { padding: 0 20px 16px; color: var(--color-ink-700); }
-  .faq .answer :global(p) { margin: 0; }
+  .category-block {
+    margin-bottom: 32px;
+  }
+  .category-block h2 {
+    margin: 24px 0 12px;
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+  }
+  .faq-list {
+    display: grid;
+    gap: 8px;
+  }
+  .faq {
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-md);
+    background: var(--color-paper-50);
+    overflow: hidden;
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--color-ink-900);
+    position: relative;
+  }
+  .faq summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 14px;
+    font-size: var(--text-md);
+    color: var(--color-red-500);
+    font-weight: 700;
+  }
+  .faq[open] summary::after {
+    content: '−';
+  }
+  .faq .answer {
+    padding: 0 20px 16px;
+    color: var(--color-ink-700);
+  }
+  .faq .answer :global(p) {
+    margin: 0;
+  }
 </style>

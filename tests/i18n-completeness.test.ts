@@ -10,8 +10,14 @@ describe('i18n completeness', () => {
     const missingInEn = esKeys.filter((k) => !enKeys.includes(k));
     const missingInEs = enKeys.filter((k) => !esKeys.includes(k));
 
-    expect(missingInEn, `Keys present in es.json but missing in en.json: ${missingInEn.join(', ')}`).toEqual([]);
-    expect(missingInEs, `Keys present in en.json but missing in es.json: ${missingInEs.join(', ')}`).toEqual([]);
+    expect(
+      missingInEn,
+      `Keys present in es.json but missing in en.json: ${missingInEn.join(', ')}`
+    ).toEqual([]);
+    expect(
+      missingInEs,
+      `Keys present in en.json but missing in es.json: ${missingInEs.join(', ')}`
+    ).toEqual([]);
   });
 
   it('no empty translation values', () => {

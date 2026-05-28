@@ -1,10 +1,5 @@
 import type { QuoteRequest, QuoteResponse } from './types';
-import {
-  PAIRS,
-  MOCK_MID_RATES,
-  DEFAULT_SPREAD_BPS,
-  QUOTE_VALIDITY_SECONDS,
-} from './mock-rates';
+import { PAIRS, MOCK_MID_RATES, DEFAULT_SPREAD_BPS, QUOTE_VALIDITY_SECONDS } from './mock-rates';
 
 const JITTER_BPS_RANGE = 20;
 
@@ -21,9 +16,7 @@ export async function getQuote(req: QuoteRequest): Promise<QuoteResponse> {
   }
 
   if (side === 'from' && amount < pair.from.min) {
-    throw new Error(
-      `Amount is below the minimum for ${pair.from.code} (${pair.from.min})`,
-    );
+    throw new Error(`Amount is below the minimum for ${pair.from.code} (${pair.from.min})`);
   }
 
   const midRate = MOCK_MID_RATES[pairId];

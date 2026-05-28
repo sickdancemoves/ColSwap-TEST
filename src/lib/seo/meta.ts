@@ -35,9 +35,7 @@ export function computeMeta(input: MetaInput): ComputedMeta {
   ];
 
   const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
-  const mapKey = (locale === 'es' ? 'es-to-en' : 'en-to-es') as
-    | 'es-to-en'
-    | 'en-to-es';
+  const mapKey = (locale === 'es' ? 'es-to-en' : 'en-to-es') as 'es-to-en' | 'en-to-es';
   const map = routeMap[mapKey] as Record<string, string>;
   const otherPath = map[normalizedPath];
   if (otherPath) {

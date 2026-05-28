@@ -26,9 +26,7 @@ export function tInterpolate(
   vars: Record<string, string | number>
 ): string {
   const raw = t(key, locale);
-  return raw.replace(/\{(\w+)\}/g, (_, name) =>
-    name in vars ? String(vars[name]) : `{${name}}`
-  );
+  return raw.replace(/\{(\w+)\}/g, (_, name) => (name in vars ? String(vars[name]) : `{${name}}`));
 }
 
 export function isLocale(value: string): value is Locale {

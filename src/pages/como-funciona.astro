@@ -10,6 +10,7 @@ const steps = [
   { titleKey: 'howItWorks.step4.title', bodyKey: 'howItWorks.step4.body', n: 4 },
 ] as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/como-funciona/"
@@ -21,15 +22,17 @@ const steps = [
     <p class="lede">{t('howItWorks.intro', locale)}</p>
 
     <ol class="steps">
-      {steps.map((s) => (
-        <li class="step">
-          <div class="step-n">{s.n}</div>
-          <div>
-            <h3>{t(s.titleKey, locale)}</h3>
-            <p>{t(s.bodyKey, locale)}</p>
-          </div>
-        </li>
-      ))}
+      {
+        steps.map((s) => (
+          <li class="step">
+            <div class="step-n">{s.n}</div>
+            <div>
+              <h3>{t(s.titleKey, locale)}</h3>
+              <p>{t(s.bodyKey, locale)}</p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
   </section>
 </PageLayout>
@@ -63,6 +66,11 @@ const steps = [
     align-items: center;
     justify-content: center;
   }
-  .step h3 { margin: 0 0 8px; }
-  .step p { margin: 0; color: var(--color-ink-600); }
+  .step h3 {
+    margin: 0 0 8px;
+  }
+  .step p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
 </style>

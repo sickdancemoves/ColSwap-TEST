@@ -13,7 +13,10 @@ interface Props {
   defaultPair?: PairId;
 }
 
-const PAIR_LABEL_KEY: Record<PairId, 'quote.pair.copToUsdt' | 'quote.pair.usdtToCop' | 'quote.pair.copToUsdc' | 'quote.pair.usdcToCop'> = {
+const PAIR_LABEL_KEY: Record<
+  PairId,
+  'quote.pair.copToUsdt' | 'quote.pair.usdtToCop' | 'quote.pair.copToUsdc' | 'quote.pair.usdcToCop'
+> = {
   'COP-USDT': 'quote.pair.copToUsdt',
   'USDT-COP': 'quote.pair.usdtToCop',
   'COP-USDC': 'quote.pair.copToUsdc',
@@ -76,7 +79,9 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
   return (
     <div className="quote-widget">
       <div className="qw-row">
-        <label className="qw-label" htmlFor="qw-pair">{t('quote.direction', locale)}</label>
+        <label className="qw-label" htmlFor="qw-pair">
+          {t('quote.direction', locale)}
+        </label>
         <select
           id="qw-pair"
           className="qw-select"
@@ -85,7 +90,9 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
           aria-label={t('quote.direction', locale)}
         >
           {(Object.keys(PAIRS) as PairId[]).map((id) => (
-            <option key={id} value={id}>{t(PAIR_LABEL_KEY[id], locale)}</option>
+            <option key={id} value={id}>
+              {t(PAIR_LABEL_KEY[id], locale)}
+            </option>
           ))}
         </select>
       </div>
@@ -106,19 +113,34 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
       </div>
 
       <div className="qw-result">
-        {loading && <div className="qw-loading"><RefreshCw size={16} className="qw-spin" /></div>}
-        {error && <div className="qw-error" role="alert">{error}</div>}
+        {loading && (
+          <div className="qw-loading">
+            <RefreshCw size={16} className="qw-spin" />
+          </div>
+        )}
+        {error && (
+          <div className="qw-error" role="alert">
+            {error}
+          </div>
+        )}
         {quote && !loading && !error && (
           <>
             <div className="qw-amount">
-              <span className="qw-amount-label">{t('quote.to', locale)} ({pair.to.code})</span>
+              <span className="qw-amount-label">
+                {t('quote.to', locale)} ({pair.to.code})
+              </span>
               <span className="qw-amount-value">
                 {formatAmount(quote.toAmount, pair.to.code, locale)}
               </span>
             </div>
             <div className="qw-meta">
-              <span>{t('quote.rate', locale)}: 1 {pair.from.code} = {formatRate(quote.rate, locale)} {pair.to.code}</span>
-              <span className="qw-badge">{t(quote.source === 'mock' ? 'quote.source.mock' : 'quote.source.api', locale)}</span>
+              <span>
+                {t('quote.rate', locale)}: 1 {pair.from.code} = {formatRate(quote.rate, locale)}{' '}
+                {pair.to.code}
+              </span>
+              <span className="qw-badge">
+                {t(quote.source === 'mock' ? 'quote.source.mock' : 'quote.source.api', locale)}
+              </span>
             </div>
           </>
         )}
@@ -129,7 +151,9 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
         href={continueUrl ?? '#'}
         aria-disabled={!continueUrl}
         tabIndex={continueUrl ? 0 : -1}
-        onClick={(e) => { if (!continueUrl) e.preventDefault(); }}
+        onClick={(e) => {
+          if (!continueUrl) e.preventDefault();
+        }}
       >
         {t('cta.continue', locale)} <ArrowRight size={16} />
       </a>

@@ -17,6 +17,7 @@
 ### Task 1: Bootstrap Node project with dependencies
 
 **Files:**
+
 - Create: `package.json`
 - Create: `tsconfig.json`
 - Create: `.gitignore`
@@ -164,6 +165,7 @@ git commit -m "chore: bootstrap Astro + React + TypeScript project"
 ### Task 2: Configure Astro with i18n and integrations
 
 **Files:**
+
 - Create: `astro.config.mjs`
 - Create: `src/env.d.ts`
 
@@ -233,6 +235,7 @@ git commit -m "chore: configure Astro with i18n, base path, and integrations"
 ### Task 3: Set up Tailwind v4 with CSS-first design tokens
 
 **Files:**
+
 - Create: `src/styles/tokens.css`
 - Create: `src/styles/globals.css`
 
@@ -246,31 +249,31 @@ git commit -m "chore: configure Astro with i18n, base path, and integrations"
  */
 @theme {
   /* Brand — Colombian yellow */
-  --color-yellow-100: #FFF7CC;
-  --color-yellow-300: #FFE56B;
-  --color-yellow-500: #FFD100;
-  --color-yellow-700: #D6A800;
-  --color-yellow-900: #8A6B00;
+  --color-yellow-100: #fff7cc;
+  --color-yellow-300: #ffe56b;
+  --color-yellow-500: #ffd100;
+  --color-yellow-700: #d6a800;
+  --color-yellow-900: #8a6b00;
 
   /* Accent — Colombian red */
-  --color-red-100: #FBDCE1;
-  --color-red-300: #E8616F;
-  --color-red-500: #C8102E;
-  --color-red-700: #8E0B20;
+  --color-red-100: #fbdce1;
+  --color-red-300: #e8616f;
+  --color-red-500: #c8102e;
+  --color-red-700: #8e0b20;
 
   /* Neutrals — warm-paper rather than stark white */
-  --color-ink-900: #0E0E10;
-  --color-ink-700: #2A2A2E;
-  --color-ink-600: #4A4A52;
-  --color-ink-400: #8A8A92;
-  --color-ink-200: #C8C8CE;
-  --color-paper-50: #FAFAF7;
-  --color-paper-100: #F2EFE7;
-  --color-paper-200: #E9E5DA;
-  --color-paper-900: #1A1A1C;
+  --color-ink-900: #0e0e10;
+  --color-ink-700: #2a2a2e;
+  --color-ink-600: #4a4a52;
+  --color-ink-400: #8a8a92;
+  --color-ink-200: #c8c8ce;
+  --color-paper-50: #fafaf7;
+  --color-paper-100: #f2efe7;
+  --color-paper-200: #e9e5da;
+  --color-paper-900: #1a1a1c;
 
   /* Semantic */
-  --color-success: #1B7F3B;
+  --color-success: #1b7f3b;
   --color-warning: var(--color-yellow-700);
   --color-danger: var(--color-red-500);
 
@@ -335,17 +338,30 @@ git commit -m "chore: configure Astro with i18n, base path, and integrations"
     min-height: 100vh;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-sans);
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.15;
   }
 
-  h1 { font-size: var(--text-3xl); }
-  h2 { font-size: var(--text-2xl); }
-  h3 { font-size: var(--text-xl); }
-  h4 { font-size: var(--text-lg); }
+  h1 {
+    font-size: var(--text-3xl);
+  }
+  h2 {
+    font-size: var(--text-2xl);
+  }
+  h3 {
+    font-size: var(--text-xl);
+  }
+  h4 {
+    font-size: var(--text-lg);
+  }
 
   a {
     color: var(--color-ink-900);
@@ -362,7 +378,10 @@ git commit -m "chore: configure Astro with i18n, base path, and integrations"
     font-family: inherit;
   }
 
-  code, pre, kbd, samp {
+  code,
+  pre,
+  kbd,
+  samp {
     font-family: var(--font-mono);
   }
 
@@ -397,6 +416,7 @@ git commit -m "feat(styles): add Tailwind v4 + Colombian-yellow design tokens"
 ### Task 4: Create i18n helper, seed UI strings, and completeness test (TDD)
 
 **Files:**
+
 - Create: `src/i18n/es.json`
 - Create: `src/i18n/en.json`
 - Create: `src/i18n/t.ts`
@@ -711,9 +731,7 @@ export function tInterpolate(
   vars: Record<string, string | number>
 ): string {
   const raw = t(key, locale);
-  return raw.replace(/\{(\w+)\}/g, (_, name) =>
-    name in vars ? String(vars[name]) : `{${name}}`
-  );
+  return raw.replace(/\{(\w+)\}/g, (_, name) => (name in vars ? String(vars[name]) : `{${name}}`));
 }
 
 export function isLocale(value: string): value is Locale {
@@ -745,8 +763,14 @@ describe('i18n completeness', () => {
     const missingInEn = esKeys.filter((k) => !enKeys.includes(k));
     const missingInEs = enKeys.filter((k) => !esKeys.includes(k));
 
-    expect(missingInEn, `Keys present in es.json but missing in en.json: ${missingInEn.join(', ')}`).toEqual([]);
-    expect(missingInEs, `Keys present in en.json but missing in es.json: ${missingInEs.join(', ')}`).toEqual([]);
+    expect(
+      missingInEn,
+      `Keys present in es.json but missing in en.json: ${missingInEn.join(', ')}`
+    ).toEqual([]);
+    expect(
+      missingInEs,
+      `Keys present in en.json but missing in es.json: ${missingInEs.join(', ')}`
+    ).toEqual([]);
   });
 
   it('no empty translation values', () => {
@@ -820,6 +844,7 @@ git commit -m "feat(i18n): add t() helper, seed UI strings, route map, completen
 ### Task 5: Build BaseLayout with head meta, hreflang, OG tags
 
 **Files:**
+
 - Create: `src/lib/seo/meta.ts`
 - Create: `src/layouts/BaseLayout.astro`
 
@@ -907,6 +932,7 @@ interface Props extends MetaInput {}
 const props = Astro.props;
 const meta = computeMeta(props);
 ---
+
 <!doctype html>
 <html lang={meta.htmlLang}>
   <head>
@@ -918,9 +944,7 @@ const meta = computeMeta(props);
     <link rel="canonical" href={meta.canonicalUrl} />
     {props.noIndex && <meta name="robots" content="noindex" />}
 
-    {meta.alternates.map((alt) => (
-      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
-    ))}
+    {meta.alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
 
     <meta property="og:title" content={meta.fullTitle} />
     <meta property="og:description" content={props.description} />
@@ -981,6 +1005,7 @@ git commit -m "feat(layout): add BaseLayout with hreflang, OG, canonical + favic
 ### Task 6: Build Header, LanguageSwitcher, Footer, and PageLayout
 
 **Files:**
+
 - Create: `src/components/nav/Header.astro`
 - Create: `src/components/nav/LanguageSwitcher.astro`
 - Create: `src/components/nav/Footer.astro`
@@ -1007,6 +1032,7 @@ const normalized = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
 const otherPath = map[normalized] ?? (otherLocale === 'es' ? '/' : '/en/');
 const href = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${otherPath}`;
 ---
+
 <a
   href={href}
   hreflang={otherLocale === 'es' ? 'es-CO' : 'en'}
@@ -1026,7 +1052,9 @@ const href = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${otherPath}`;
     padding: 6px 10px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-paper-200);
-    transition: background 120ms ease, color 120ms ease;
+    transition:
+      background 120ms ease,
+      color 120ms ease;
   }
   .lang-switcher:hover {
     background: var(--color-yellow-100);
@@ -1052,27 +1080,29 @@ interface Props {
 const { locale, currentPath } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const navLinks = locale === 'es'
-  ? [
-      { href: '/como-funciona/', key: 'nav.howItWorks' as const },
-      { href: '/precios/', key: 'nav.pricing' as const },
-      { href: '/empresas/', key: 'nav.business' as const },
-      { href: '/cumplimiento/', key: 'nav.compliance' as const },
-      { href: '/blog/', key: 'nav.blog' as const },
-      { href: '/contacto/', key: 'nav.contact' as const },
-    ]
-  : [
-      { href: '/en/how-it-works/', key: 'nav.howItWorks' as const },
-      { href: '/en/pricing/', key: 'nav.pricing' as const },
-      { href: '/en/business/', key: 'nav.business' as const },
-      { href: '/en/compliance/', key: 'nav.compliance' as const },
-      { href: '/en/blog/', key: 'nav.blog' as const },
-      { href: '/en/contact/', key: 'nav.contact' as const },
-    ];
+const navLinks =
+  locale === 'es'
+    ? [
+        { href: '/como-funciona/', key: 'nav.howItWorks' as const },
+        { href: '/precios/', key: 'nav.pricing' as const },
+        { href: '/empresas/', key: 'nav.business' as const },
+        { href: '/cumplimiento/', key: 'nav.compliance' as const },
+        { href: '/blog/', key: 'nav.blog' as const },
+        { href: '/contacto/', key: 'nav.contact' as const },
+      ]
+    : [
+        { href: '/en/how-it-works/', key: 'nav.howItWorks' as const },
+        { href: '/en/pricing/', key: 'nav.pricing' as const },
+        { href: '/en/business/', key: 'nav.business' as const },
+        { href: '/en/compliance/', key: 'nav.compliance' as const },
+        { href: '/en/blog/', key: 'nav.blog' as const },
+        { href: '/en/contact/', key: 'nav.contact' as const },
+      ];
 
 const homeHref = locale === 'es' ? '/' : '/en/';
 const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.tech';
 ---
+
 <header class="site-header">
   <div class="container-page header-inner">
     <a href={`${base}${homeHref}`} class="brand" aria-label="ColSwap">
@@ -1082,11 +1112,13 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
 
     <nav class="primary-nav" aria-label="Primary">
       <ul>
-        {navLinks.map((link) => (
-          <li>
-            <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
-          </li>
-        ))}
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
 
@@ -1132,8 +1164,11 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     display: inline-block;
     width: 22px;
     height: 22px;
-    background:
-      linear-gradient(135deg, var(--color-yellow-500) 0 60%, var(--color-red-500) 60% 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-yellow-500) 0 60%,
+      var(--color-red-500) 60% 100%
+    );
     border-radius: var(--radius-sm);
   }
 
@@ -1153,7 +1188,9 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     font-size: var(--text-xs);
     font-weight: 500;
   }
-  .primary-nav a:hover { color: var(--color-ink-900); }
+  .primary-nav a:hover {
+    color: var(--color-ink-900);
+  }
 
   .header-actions {
     display: inline-flex;
@@ -1171,23 +1208,32 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     font-size: var(--text-xs);
     font-weight: 600;
     text-decoration: none;
-    transition: background 120ms ease, color 120ms ease, transform 120ms ease;
+    transition:
+      background 120ms ease,
+      color 120ms ease,
+      transform 120ms ease;
   }
   .btn-ghost {
     color: var(--color-ink-900);
     background: transparent;
     border: 1px solid var(--color-paper-200);
   }
-  .btn-ghost:hover { background: var(--color-paper-100); }
+  .btn-ghost:hover {
+    background: var(--color-paper-100);
+  }
   .btn-primary {
     color: var(--color-ink-900);
     background: var(--color-yellow-500);
     border: 1px solid var(--color-yellow-700);
   }
-  .btn-primary:hover { background: var(--color-yellow-300); }
+  .btn-primary:hover {
+    background: var(--color-yellow-300);
+  }
 
   @media (max-width: 860px) {
-    .primary-nav { display: none; }
+    .primary-nav {
+      display: none;
+    }
   }
 </style>
 ```
@@ -1207,20 +1253,22 @@ const { locale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
 
-const legalLinks = locale === 'es'
-  ? [
-      { href: '/legal/terminos/', key: 'footer.legal.terms' as const },
-      { href: '/legal/privacidad/', key: 'footer.legal.privacy' as const },
-      { href: '/legal/aml/', key: 'footer.legal.aml' as const },
-      { href: '/legal/cookies/', key: 'footer.legal.cookies' as const },
-    ]
-  : [
-      { href: '/en/legal/terms/', key: 'footer.legal.terms' as const },
-      { href: '/en/legal/privacy/', key: 'footer.legal.privacy' as const },
-      { href: '/en/legal/aml/', key: 'footer.legal.aml' as const },
-      { href: '/en/legal/cookies/', key: 'footer.legal.cookies' as const },
-    ];
+const legalLinks =
+  locale === 'es'
+    ? [
+        { href: '/legal/terminos/', key: 'footer.legal.terms' as const },
+        { href: '/legal/privacidad/', key: 'footer.legal.privacy' as const },
+        { href: '/legal/aml/', key: 'footer.legal.aml' as const },
+        { href: '/legal/cookies/', key: 'footer.legal.cookies' as const },
+      ]
+    : [
+        { href: '/en/legal/terms/', key: 'footer.legal.terms' as const },
+        { href: '/en/legal/privacy/', key: 'footer.legal.privacy' as const },
+        { href: '/en/legal/aml/', key: 'footer.legal.aml' as const },
+        { href: '/en/legal/cookies/', key: 'footer.legal.cookies' as const },
+      ];
 ---
+
 <footer class="site-footer">
   <div class="container-page footer-inner">
     <div class="footer-brand">
@@ -1233,11 +1281,13 @@ const legalLinks = locale === 'es'
 
     <nav class="footer-legal" aria-label="Legal">
       <ul>
-        {legalLinks.map((link) => (
-          <li>
-            <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
-          </li>
-        ))}
+        {
+          legalLinks.map((link) => (
+            <li>
+              <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
 
@@ -1269,11 +1319,21 @@ const legalLinks = locale === 'es'
   .brand-mark {
     width: 24px;
     height: 24px;
-    background: linear-gradient(135deg, var(--color-yellow-500) 0 60%, var(--color-red-500) 60% 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-yellow-500) 0 60%,
+      var(--color-red-500) 60% 100%
+    );
     border-radius: var(--radius-sm);
   }
-  .brand-name { font-weight: 700; color: var(--color-paper-50); }
-  .brand-tag { font-size: var(--text-xs); color: var(--color-ink-400); }
+  .brand-name {
+    font-weight: 700;
+    color: var(--color-paper-50);
+  }
+  .brand-tag {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
 
   .footer-legal ul {
     list-style: none;
@@ -1288,7 +1348,9 @@ const legalLinks = locale === 'es'
     text-decoration: none;
     font-size: var(--text-xs);
   }
-  .footer-legal a:hover { color: var(--color-yellow-500); }
+  .footer-legal a:hover {
+    color: var(--color-yellow-500);
+  }
 
   .footer-meta {
     text-align: right;
@@ -1300,8 +1362,12 @@ const legalLinks = locale === 'es'
   }
 
   @media (max-width: 700px) {
-    .footer-inner { grid-template-columns: 1fr; }
-    .footer-meta { text-align: left; }
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+    .footer-meta {
+      text-align: left;
+    }
   }
 </style>
 ```
@@ -1320,6 +1386,7 @@ interface Props extends MetaInput {}
 
 const props = Astro.props;
 ---
+
 <BaseLayout {...props}>
   <Header locale={props.locale} currentPath={props.currentPath} />
   <main>
@@ -1343,6 +1410,7 @@ git commit -m "feat(layout): add Header, LanguageSwitcher, Footer, and PageLayou
 ### Task 7: Define content collections with Zod schemas
 
 **Files:**
+
 - Create: `src/content/config.ts`
 
 - [ ] **Step 1: Create content config**
@@ -1383,14 +1451,7 @@ const legal = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string().min(1),
-    slug: z.enum([
-      'terminos',
-      'privacidad',
-      'aml',
-      'cookies',
-      'terms',
-      'privacy',
-    ]),
+    slug: z.enum(['terminos', 'privacidad', 'aml', 'cookies', 'terms', 'privacy']),
     lastUpdated: z.coerce.date(),
     version: z.string().regex(/^\d+\.\d+\.\d+$/, 'semver'),
     locale: localeEnum,
@@ -1420,6 +1481,7 @@ git commit -m "feat(content): define Zod schemas for blog, faqs, legal collectio
 ### Task 8: Seed content collections
 
 **Files:**
+
 - Create: `src/content/blog/es/regulacion-vasp-colombia.md`
 - Create: `src/content/blog/en/colombia-vasp-regulation.md`
 - Create: `src/content/faqs/es/general-1.md`, `general-2.md`, `compliance-1.md`, `process-1.md`
@@ -1496,6 +1558,7 @@ category: 'general'
 order: 1
 locale: 'es'
 ---
+
 No. ColSwap es una plataforma OTC no custodial. En ningún momento mantenemos saldos a nombre del cliente. Coordinamos cada operación entre el proveedor de fiat y el proveedor de liquidez cripto, y los activos se entregan directamente a tu wallet designada.
 ```
 
@@ -1506,6 +1569,7 @@ category: 'general'
 order: 2
 locale: 'es'
 ---
+
 En v1 operamos los pares COP↔USDT y COP↔USDC. Otros pares se habilitarán a medida que sumamos proveedores de liquidez.
 ```
 
@@ -1516,6 +1580,7 @@ category: 'compliance'
 order: 3
 locale: 'es'
 ---
+
 ColSwap está registrado ante la UIAF como sujeto obligado. El proceso KYC nos permite cumplir con las obligaciones de identificación y monitoreo establecidas por la regulación colombiana para los VASPs.
 ```
 
@@ -1526,6 +1591,7 @@ category: 'process'
 order: 4
 locale: 'es'
 ---
+
 Una vez aceptas la cotización y se recibe la transferencia COP en la cuenta operativa, el flujo a tu wallet típicamente toma entre 5 y 20 minutos, sujeto a confirmaciones en cadena y al proveedor de liquidez.
 ```
 
@@ -1538,6 +1604,7 @@ category: 'general'
 order: 1
 locale: 'en'
 ---
+
 No. ColSwap is a non-custodial OTC platform. At no point do we hold client balances. We coordinate each operation between the fiat provider and the crypto liquidity provider, and assets are delivered directly to your designated wallet.
 ```
 
@@ -1548,6 +1615,7 @@ category: 'general'
 order: 2
 locale: 'en'
 ---
+
 At v1 we operate COP↔USDT and COP↔USDC. Additional pairs become available as we onboard more liquidity providers.
 ```
 
@@ -1558,6 +1626,7 @@ category: 'compliance'
 order: 3
 locale: 'en'
 ---
+
 ColSwap is registered with UIAF as an obligated entity. The KYC process lets us meet the identification and monitoring requirements set by Colombian regulation for VASPs.
 ```
 
@@ -1568,6 +1637,7 @@ category: 'process'
 order: 4
 locale: 'en'
 ---
+
 Once you accept the quote and the COP transfer arrives at the operating account, settlement to your wallet typically takes 5 to 20 minutes, depending on on-chain confirmations and the liquidity provider.
 ```
 
@@ -1764,6 +1834,7 @@ git commit -m "feat(content): seed blog, FAQs, and legal collections (es + en)"
 ### Task 9: Create the Spanish home page with hero placeholder
 
 **Files:**
+
 - Create: `src/pages/index.astro`
 - Create: `src/components/cta/SalesContactCTA.astro`
 - Create: `src/components/trust/ComplianceBadges.astro`
@@ -1774,11 +1845,14 @@ git commit -m "feat(content): seed blog, FAQs, and legal collections (es + en)"
 ---
 // src/components/cta/SalesContactCTA.astro
 import { type Locale, t } from '@/i18n/t';
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const contactPath = locale === 'es' ? '/contacto/' : '/en/contact/';
 ---
+
 <section class="sales-cta">
   <div class="container-page sales-inner">
     <p>{t('home.hero.salesLabel', locale)}</p>
@@ -1800,7 +1874,11 @@ const contactPath = locale === 'es' ? '/contacto/' : '/en/contact/';
     gap: 16px;
     padding-block: 20px;
   }
-  .sales-inner p { margin: 0; font-weight: 500; color: var(--color-ink-700); }
+  .sales-inner p {
+    margin: 0;
+    font-weight: 500;
+    color: var(--color-ink-700);
+  }
   .btn-sales {
     display: inline-flex;
     align-items: center;
@@ -1813,9 +1891,15 @@ const contactPath = locale === 'es' ? '/contacto/' : '/en/contact/';
     text-decoration: none;
     transition: background 120ms ease;
   }
-  .btn-sales:hover { background: var(--color-red-700); color: var(--color-paper-50); }
+  .btn-sales:hover {
+    background: var(--color-red-700);
+    color: var(--color-paper-50);
+  }
   @media (max-width: 700px) {
-    .sales-inner { flex-direction: column; align-items: flex-start; }
+    .sales-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
 ```
@@ -1827,7 +1911,9 @@ const contactPath = locale === 'es' ? '/contacto/' : '/en/contact/';
 // src/components/trust/ComplianceBadges.astro
 import { Icon } from 'astro-icon/components';
 import { type Locale, t } from '@/i18n/t';
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 
 const badges = [
@@ -1837,22 +1923,28 @@ const badges = [
   { iconName: 'lucide:building', titleKey: 'home.trust.kyb' as const },
 ];
 ---
+
 <section class="trust">
   <div class="container-page">
     <h2 class="trust-title">{t('home.trust.title', locale)}</h2>
     <ul class="badges">
-      {badges.map((b) => (
-        <li class="badge">
-          <Icon name={b.iconName} class="badge-icon" />
-          <span>{t(b.titleKey, locale)}</span>
-        </li>
-      ))}
+      {
+        badges.map((b) => (
+          <li class="badge">
+            <Icon name={b.iconName} class="badge-icon" />
+            <span>{t(b.titleKey, locale)}</span>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </section>
 
 <style>
-  .trust { padding-block: 64px; background: var(--color-paper-100); }
+  .trust {
+    padding-block: 64px;
+    background: var(--color-paper-100);
+  }
   .trust-title {
     text-align: center;
     font-size: var(--text-md);
@@ -1888,7 +1980,9 @@ const badges = [
     color: var(--color-red-500);
   }
   @media (max-width: 760px) {
-    .badges { grid-template-columns: repeat(2, 1fr); }
+    .badges {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>
 ```
@@ -1905,6 +1999,7 @@ import { t } from '@/i18n/t';
 
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/"
@@ -1959,7 +2054,9 @@ const locale = 'es' as const;
     padding: 24px;
   }
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -1987,6 +2084,7 @@ git commit -m "feat(pages): add Spanish home page with hero, sales CTA, complian
 ### Task 10: Create remaining Spanish marketing pages
 
 **Files:**
+
 - Create: `src/pages/como-funciona.astro`
 - Create: `src/pages/precios.astro`
 - Create: `src/pages/empresas.astro`
@@ -2009,6 +2107,7 @@ const steps = [
   { titleKey: 'howItWorks.step4.title', bodyKey: 'howItWorks.step4.body', n: 4 },
 ] as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/como-funciona/"
@@ -2020,21 +2119,25 @@ const steps = [
     <p class="lede">{t('howItWorks.intro', locale)}</p>
 
     <ol class="steps">
-      {steps.map((s) => (
-        <li class="step">
-          <div class="step-n">{s.n}</div>
-          <div>
-            <h3>{t(s.titleKey, locale)}</h3>
-            <p>{t(s.bodyKey, locale)}</p>
-          </div>
-        </li>
-      ))}
+      {
+        steps.map((s) => (
+          <li class="step">
+            <div class="step-n">{s.n}</div>
+            <div>
+              <h3>{t(s.titleKey, locale)}</h3>
+              <p>{t(s.bodyKey, locale)}</p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
   .lede {
     font-size: var(--text-md);
     color: var(--color-ink-600);
@@ -2069,8 +2172,13 @@ const steps = [
     align-items: center;
     justify-content: center;
   }
-  .step h3 { margin: 0 0 8px; }
-  .step p { margin: 0; color: var(--color-ink-600); }
+  .step h3 {
+    margin: 0 0 8px;
+  }
+  .step p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
 </style>
 ```
 
@@ -2082,6 +2190,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/precios/"
@@ -2118,7 +2227,9 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
   .lede {
     font-size: var(--text-md);
     color: var(--color-ink-600);
@@ -2140,8 +2251,13 @@ const locale = 'es' as const;
     border-color: var(--color-yellow-500);
     background: var(--color-yellow-100);
   }
-  .tier h3 { margin: 0 0 8px; }
-  .tier-desc { color: var(--color-ink-600); margin: 0 0 24px; }
+  .tier h3 {
+    margin: 0 0 8px;
+  }
+  .tier-desc {
+    color: var(--color-ink-600);
+    margin: 0 0 24px;
+  }
   .spread {
     font-size: var(--text-xl);
     font-weight: 700;
@@ -2173,7 +2289,9 @@ const locale = 'es' as const;
     font-weight: 700;
   }
   @media (max-width: 700px) {
-    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -2187,6 +2305,7 @@ import { t } from '@/i18n/t';
 import SalesContactCTA from '@/components/cta/SalesContactCTA.astro';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/empresas/"
@@ -2200,19 +2319,31 @@ const locale = 'es' as const;
     <div class="features">
       <article>
         <h3>KYB acompañado</h3>
-        <p>Nuestro equipo te guía paso a paso por el proceso de verificación de la empresa, los UBOs y las cuentas operativas.</p>
+        <p>
+          Nuestro equipo te guía paso a paso por el proceso de verificación de la empresa, los UBOs
+          y las cuentas operativas.
+        </p>
       </article>
       <article>
         <h3>Ejecutivo dedicado</h3>
-        <p>Un punto de contacto único para tu operación, cotizaciones, reportes y resolución de incidencias.</p>
+        <p>
+          Un punto de contacto único para tu operación, cotizaciones, reportes y resolución de
+          incidencias.
+        </p>
       </article>
       <article>
         <h3>Reportes operativos</h3>
-        <p>Reportes mensuales con todas tus operaciones, tasas aplicadas, tiempos de ejecución y trazabilidad para tu contabilidad.</p>
+        <p>
+          Reportes mensuales con todas tus operaciones, tasas aplicadas, tiempos de ejecución y
+          trazabilidad para tu contabilidad.
+        </p>
       </article>
       <article>
         <h3>Integración fiat-cripto</h3>
-        <p>Operamos con PSE a través de SoyPago para entradas COP y con proveedores de liquidez globales para la salida cripto.</p>
+        <p>
+          Operamos con PSE a través de SoyPago para entradas COP y con proveedores de liquidez
+          globales para la salida cripto.
+        </p>
       </article>
     </div>
   </section>
@@ -2220,7 +2351,9 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px; }
+  .page-section {
+    padding-block: 64px;
+  }
   .lede {
     font-size: var(--text-md);
     color: var(--color-ink-600);
@@ -2238,10 +2371,17 @@ const locale = 'es' as const;
     border-radius: var(--radius-lg);
     background: var(--color-paper-50);
   }
-  .features h3 { margin: 0 0 8px; }
-  .features p { margin: 0; color: var(--color-ink-600); }
+  .features h3 {
+    margin: 0 0 8px;
+  }
+  .features p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
   @media (max-width: 720px) {
-    .features { grid-template-columns: 1fr; }
+    .features {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -2254,6 +2394,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/cumplimiento/"
@@ -2266,28 +2407,43 @@ const locale = 'es' as const;
 
     <div class="callout">
       <h3>Registro UIAF</h3>
-      <p>ColSwap está en proceso de registro como sujeto obligado en el Sistema de Información para el Reporte de Operaciones (SIREL) administrado por la Unidad de Información y Análisis Financiero.</p>
+      <p>
+        ColSwap está en proceso de registro como sujeto obligado en el Sistema de Información para
+        el Reporte de Operaciones (SIREL) administrado por la Unidad de Información y Análisis
+        Financiero.
+      </p>
     </div>
 
     <div class="callout">
       <h3>Programa AML</h3>
-      <p>Identificación de clientes (KYC para personas naturales, KYB para empresas), monitoreo continuo de transacciones, procedimientos de detección y reporte de operaciones sospechosas.</p>
+      <p>
+        Identificación de clientes (KYC para personas naturales, KYB para empresas), monitoreo
+        continuo de transacciones, procedimientos de detección y reporte de operaciones sospechosas.
+      </p>
     </div>
 
     <div class="callout">
       <h3>Reportes regulatorios</h3>
-      <p>Reportes mensuales agregados que igualen o superen USD 450, reportes individuales que superen USD 150, y reportes de clientes activos / inactivos.</p>
+      <p>
+        Reportes mensuales agregados que igualen o superen USD 450, reportes individuales que
+        superen USD 150, y reportes de clientes activos / inactivos.
+      </p>
     </div>
 
     <div class="callout">
       <h3>SARLAFT / SAGRILAFT</h3>
-      <p>Aplicamos lineamientos SARLAFT como buena práctica. Implementaremos SAGRILAFT si superamos los umbrales aplicables, conforme a la regulación de la Superintendencia de Sociedades.</p>
+      <p>
+        Aplicamos lineamientos SARLAFT como buena práctica. Implementaremos SAGRILAFT si superamos
+        los umbrales aplicables, conforme a la regulación de la Superintendencia de Sociedades.
+      </p>
     </div>
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
   .lede {
     font-size: var(--text-md);
     color: var(--color-ink-600);
@@ -2301,8 +2457,13 @@ const locale = 'es' as const;
     background: var(--color-paper-50);
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
-  .callout h3 { margin: 0 0 8px; }
-  .callout p { margin: 0; color: var(--color-ink-700); }
+  .callout h3 {
+    margin: 0 0 8px;
+  }
+  .callout p {
+    margin: 0;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -2314,6 +2475,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/sobre-nosotros/"
@@ -2326,28 +2488,49 @@ const locale = 'es' as const;
 
     <article class="prose">
       <h2>Paytrium Digital Holding</h2>
-      <p>ColSwap opera bajo Paytrium Digital Holding, una compañía dedicada a infraestructura financiera para mercados emergentes. Nuestro equipo está distribuido y combina experiencia en regulación, ingeniería y operaciones cripto.</p>
+      <p>
+        ColSwap opera bajo Paytrium Digital Holding, una compañía dedicada a infraestructura
+        financiera para mercados emergentes. Nuestro equipo está distribuido y combina experiencia
+        en regulación, ingeniería y operaciones cripto.
+      </p>
 
       <h2>Por qué Colombia, por qué OTC</h2>
-      <p>Colombia tiene un volumen creciente de empresas y profesionales con necesidades de conversión recurrente entre pesos y activos digitales. El modelo OTC no custodial elimina el riesgo de saldo bajo nuestra responsabilidad y permite ejecutar a tasas competitivas con trazabilidad regulatoria completa.</p>
+      <p>
+        Colombia tiene un volumen creciente de empresas y profesionales con necesidades de
+        conversión recurrente entre pesos y activos digitales. El modelo OTC no custodial elimina el
+        riesgo de saldo bajo nuestra responsabilidad y permite ejecutar a tasas competitivas con
+        trazabilidad regulatoria completa.
+      </p>
 
       <h2>Nuestra misión</h2>
-      <p>Construir la capa de coordinación más confiable para conversiones COP↔cripto en Colombia, con cumplimiento regulatorio desde el primer día.</p>
+      <p>
+        Construir la capa de coordinación más confiable para conversiones COP↔cripto en Colombia,
+        con cumplimiento regulatorio desde el primer día.
+      </p>
     </article>
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
   .lede {
     font-size: var(--text-md);
     color: var(--color-ink-600);
     max-width: 60ch;
     margin-bottom: 32px;
   }
-  .prose { max-width: 70ch; }
-  .prose h2 { margin: 32px 0 12px; }
-  .prose p { margin: 0 0 16px; color: var(--color-ink-700); }
+  .prose {
+    max-width: 70ch;
+  }
+  .prose h2 {
+    margin: 32px 0 12px;
+  }
+  .prose p {
+    margin: 0 0 16px;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -2360,6 +2543,7 @@ import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/contacto/"
@@ -2386,7 +2570,9 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
   .lede {
     font-size: var(--text-md);
     color: var(--color-ink-600);
@@ -2404,7 +2590,9 @@ const locale = 'es' as const;
     border-radius: var(--radius-lg);
     background: var(--color-paper-50);
   }
-  .contact-card h3 { margin: 12px 0 8px; }
+  .contact-card h3 {
+    margin: 12px 0 8px;
+  }
   .contact-icon {
     width: 28px;
     height: 28px;
@@ -2415,7 +2603,9 @@ const locale = 'es' as const;
     font-weight: 600;
   }
   @media (max-width: 700px) {
-    .contact-grid { grid-template-columns: 1fr; }
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -2432,6 +2622,7 @@ git commit -m "feat(pages): add Spanish marketing pages (how-it-works, pricing, 
 ### Task 11: Create English marketing pages (mirrors)
 
 **Files:**
+
 - Create: `src/pages/en/index.astro`
 - Create: `src/pages/en/how-it-works.astro`
 - Create: `src/pages/en/pricing.astro`
@@ -2452,6 +2643,7 @@ import ComplianceBadges from '@/components/trust/ComplianceBadges.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/"
@@ -2504,7 +2696,9 @@ const locale = 'en' as const;
     padding: 24px;
   }
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -2525,6 +2719,7 @@ const steps = [
   { titleKey: 'howItWorks.step4.title', bodyKey: 'howItWorks.step4.body', n: 4 },
 ] as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/how-it-works/"
@@ -2535,27 +2730,66 @@ const steps = [
     <h1>{t('howItWorks.title', locale)}</h1>
     <p class="lede">{t('howItWorks.intro', locale)}</p>
     <ol class="steps">
-      {steps.map((s) => (
-        <li class="step">
-          <div class="step-n">{s.n}</div>
-          <div>
-            <h3>{t(s.titleKey, locale)}</h3>
-            <p>{t(s.bodyKey, locale)}</p>
-          </div>
-        </li>
-      ))}
+      {
+        steps.map((s) => (
+          <li class="step">
+            <div class="step-n">{s.n}</div>
+            <div>
+              <h3>{t(s.titleKey, locale)}</h3>
+              <p>{t(s.bodyKey, locale)}</p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 48px; }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
-  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 24px; border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); background: var(--color-paper-50); }
-  .step-n { width: 56px; height: 56px; border-radius: 50%; background: var(--color-yellow-500); color: var(--color-ink-900); font-weight: 700; font-size: var(--text-md); display: flex; align-items: center; justify-content: center; }
-  .step h3 { margin: 0 0 8px; }
-  .step p { margin: 0; color: var(--color-ink-600); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 24px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 24px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .step-n {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-yellow-500);
+    color: var(--color-ink-900);
+    font-weight: 700;
+    font-size: var(--text-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step h3 {
+    margin: 0 0 8px;
+  }
+  .step p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
 </style>
 ```
 
@@ -2567,6 +2801,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/pricing/"
@@ -2603,19 +2838,72 @@ const locale = 'en' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 48px; }
-  .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .tier { border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); padding: 32px; background: var(--color-paper-50); }
-  .tier.featured { border-color: var(--color-yellow-500); background: var(--color-yellow-100); }
-  .tier h3 { margin: 0 0 8px; }
-  .tier-desc { color: var(--color-ink-600); margin: 0 0 24px; }
-  .spread { font-size: var(--text-xl); font-weight: 700; margin-bottom: 24px; }
-  .spread span { display: block; font-size: var(--text-xs); font-weight: 500; color: var(--color-ink-600); }
-  .tier ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-  .tier li { padding-left: 20px; position: relative; font-size: var(--text-xs); }
-  .tier li::before { content: '✓'; position: absolute; left: 0; color: var(--color-red-500); font-weight: 700; }
-  @media (max-width: 700px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .tier {
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    background: var(--color-paper-50);
+  }
+  .tier.featured {
+    border-color: var(--color-yellow-500);
+    background: var(--color-yellow-100);
+  }
+  .tier h3 {
+    margin: 0 0 8px;
+  }
+  .tier-desc {
+    color: var(--color-ink-600);
+    margin: 0 0 24px;
+  }
+  .spread {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .spread span {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-ink-600);
+  }
+  .tier ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .tier li {
+    padding-left: 20px;
+    position: relative;
+    font-size: var(--text-xs);
+  }
+  .tier li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-red-500);
+    font-weight: 700;
+  }
+  @media (max-width: 700px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 ```
 
@@ -2628,6 +2916,7 @@ import { t } from '@/i18n/t';
 import SalesContactCTA from '@/components/cta/SalesContactCTA.astro';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/business/"
@@ -2641,19 +2930,30 @@ const locale = 'en' as const;
     <div class="features">
       <article>
         <h3>Guided KYB</h3>
-        <p>Our team walks you step by step through verifying the company, its UBOs, and operational accounts.</p>
+        <p>
+          Our team walks you step by step through verifying the company, its UBOs, and operational
+          accounts.
+        </p>
       </article>
       <article>
         <h3>Dedicated account manager</h3>
-        <p>A single point of contact for your operations, quotes, reports, and incident resolution.</p>
+        <p>
+          A single point of contact for your operations, quotes, reports, and incident resolution.
+        </p>
       </article>
       <article>
         <h3>Operational reporting</h3>
-        <p>Monthly reports with all your operations, applied rates, execution times, and traceability for your books.</p>
+        <p>
+          Monthly reports with all your operations, applied rates, execution times, and traceability
+          for your books.
+        </p>
       </article>
       <article>
         <h3>Fiat-to-crypto integration</h3>
-        <p>We operate with PSE through SoyPago for COP inflows and with global liquidity providers for crypto outflows.</p>
+        <p>
+          We operate with PSE through SoyPago for COP inflows and with global liquidity providers
+          for crypto outflows.
+        </p>
       </article>
     </div>
   </section>
@@ -2661,13 +2961,38 @@ const locale = 'en' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 48px; }
-  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .features article { padding: 24px; border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); background: var(--color-paper-50); }
-  .features h3 { margin: 0 0 8px; }
-  .features p { margin: 0; color: var(--color-ink-600); }
-  @media (max-width: 720px) { .features { grid-template-columns: 1fr; } }
+  .page-section {
+    padding-block: 64px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .features article {
+    padding: 24px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .features h3 {
+    margin: 0 0 8px;
+  }
+  .features p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
+  @media (max-width: 720px) {
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 ```
 
@@ -2679,6 +3004,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/compliance/"
@@ -2691,32 +3017,62 @@ const locale = 'en' as const;
 
     <div class="callout">
       <h3>UIAF registration</h3>
-      <p>ColSwap is in the process of registering as an obligated entity in the SIREL reporting system, administered by Colombia's Financial Information and Analysis Unit (UIAF).</p>
+      <p>
+        ColSwap is in the process of registering as an obligated entity in the SIREL reporting
+        system, administered by Colombia's Financial Information and Analysis Unit (UIAF).
+      </p>
     </div>
 
     <div class="callout">
       <h3>AML program</h3>
-      <p>Customer identification (KYC for individuals, KYB for businesses), continuous transaction monitoring, suspicious-operation detection and reporting procedures.</p>
+      <p>
+        Customer identification (KYC for individuals, KYB for businesses), continuous transaction
+        monitoring, suspicious-operation detection and reporting procedures.
+      </p>
     </div>
 
     <div class="callout">
       <h3>Regulatory reporting</h3>
-      <p>Monthly aggregate reports that meet or exceed USD 450, individual reports above USD 150, and active / inactive client reports.</p>
+      <p>
+        Monthly aggregate reports that meet or exceed USD 450, individual reports above USD 150, and
+        active / inactive client reports.
+      </p>
     </div>
 
     <div class="callout">
       <h3>SARLAFT / SAGRILAFT</h3>
-      <p>We apply SARLAFT guidelines as best practice. We will implement SAGRILAFT if we exceed the applicable thresholds, in line with the Superintendency of Companies' regulation.</p>
+      <p>
+        We apply SARLAFT guidelines as best practice. We will implement SAGRILAFT if we exceed the
+        applicable thresholds, in line with the Superintendency of Companies' regulation.
+      </p>
     </div>
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 32px; }
-  .callout { padding: 24px; margin-bottom: 16px; border-left: 4px solid var(--color-red-500); background: var(--color-paper-50); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
-  .callout h3 { margin: 0 0 8px; }
-  .callout p { margin: 0; color: var(--color-ink-700); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .callout {
+    padding: 24px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--color-red-500);
+    background: var(--color-paper-50);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  .callout h3 {
+    margin: 0 0 8px;
+  }
+  .callout p {
+    margin: 0;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -2728,6 +3084,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/about/"
@@ -2740,23 +3097,48 @@ const locale = 'en' as const;
 
     <article class="prose">
       <h2>Paytrium Digital Holding</h2>
-      <p>ColSwap operates under Paytrium Digital Holding, a company focused on financial infrastructure for emerging markets. Our team is distributed and combines experience in regulation, engineering, and crypto operations.</p>
+      <p>
+        ColSwap operates under Paytrium Digital Holding, a company focused on financial
+        infrastructure for emerging markets. Our team is distributed and combines experience in
+        regulation, engineering, and crypto operations.
+      </p>
 
       <h2>Why Colombia, why OTC</h2>
-      <p>Colombia has a growing volume of businesses and professionals with recurring conversion needs between pesos and digital assets. The non-custodial OTC model eliminates balance risk on our side and lets us execute at competitive rates with full regulatory traceability.</p>
+      <p>
+        Colombia has a growing volume of businesses and professionals with recurring conversion
+        needs between pesos and digital assets. The non-custodial OTC model eliminates balance risk
+        on our side and lets us execute at competitive rates with full regulatory traceability.
+      </p>
 
       <h2>Our mission</h2>
-      <p>Build the most trustworthy coordination layer for COP↔crypto conversions in Colombia, with regulatory compliance from day one.</p>
+      <p>
+        Build the most trustworthy coordination layer for COP↔crypto conversions in Colombia, with
+        regulatory compliance from day one.
+      </p>
     </article>
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 32px; }
-  .prose { max-width: 70ch; }
-  .prose h2 { margin: 32px 0 12px; }
-  .prose p { margin: 0 0 16px; color: var(--color-ink-700); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .prose {
+    max-width: 70ch;
+  }
+  .prose h2 {
+    margin: 32px 0 12px;
+  }
+  .prose p {
+    margin: 0 0 16px;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -2769,6 +3151,7 @@ import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/contact/"
@@ -2795,14 +3178,43 @@ const locale = 'en' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 32px; }
-  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .contact-card { padding: 28px; border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); background: var(--color-paper-50); }
-  .contact-card h3 { margin: 12px 0 8px; }
-  .contact-icon { width: 28px; height: 28px; color: var(--color-red-500); }
-  .contact-card a { color: var(--color-ink-900); font-weight: 600; }
-  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .contact-card {
+    padding: 28px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .contact-card h3 {
+    margin: 12px 0 8px;
+  }
+  .contact-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--color-red-500);
+  }
+  .contact-card a {
+    color: var(--color-ink-900);
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 ```
 
@@ -2830,6 +3242,7 @@ git commit -m "feat(pages): add English marketing pages (mirrors of Spanish)"
 ### Task 12: Create dynamic content routes (blog, legal, FAQs)
 
 **Files:**
+
 - Create: `src/pages/blog/index.astro`
 - Create: `src/pages/blog/[slug].astro`
 - Create: `src/pages/en/blog/index.astro`
@@ -2850,9 +3263,11 @@ import { t } from '@/i18n/t';
 const locale = 'es' as const;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const posts = (await getCollection('blog', ({ data }) => data.locale === 'es' && !data.draft))
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const posts = (await getCollection('blog', ({ data }) => data.locale === 'es' && !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/blog/"
@@ -2863,30 +3278,49 @@ const posts = (await getCollection('blog', ({ data }) => data.locale === 'es' &&
     <h1>{t('blog.title', locale)}</h1>
     <p class="lede">{t('blog.subtitle', locale)}</p>
 
-    {posts.length === 0 ? (
-      <p class="empty">{t('blog.empty', locale)}</p>
-    ) : (
-      <ul class="post-list">
-        {posts.map((post) => (
-          <li>
-            <a href={`${base}/blog/${post.data.slug}/`} class="post-card">
-              <time>{post.data.publishDate.toLocaleDateString('es-CO', { dateStyle: 'long' })}</time>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.summary}</p>
-              <span class="read-more">{t('blog.readMore', locale)} →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+    {
+      posts.length === 0 ? (
+        <p class="empty">{t('blog.empty', locale)}</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li>
+              <a href={`${base}/blog/${post.data.slug}/`} class="post-card">
+                <time>
+                  {post.data.publishDate.toLocaleDateString('es-CO', { dateStyle: 'long' })}
+                </time>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.summary}</p>
+                <span class="read-more">{t('blog.readMore', locale)} →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 48px; }
-  .empty { color: var(--color-ink-400); }
-  .post-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+  .empty {
+    color: var(--color-ink-400);
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
   .post-card {
     display: block;
     padding: 24px;
@@ -2895,13 +3329,30 @@ const posts = (await getCollection('blog', ({ data }) => data.locale === 'es' &&
     background: var(--color-paper-50);
     text-decoration: none;
     color: inherit;
-    transition: border-color 120ms ease, transform 120ms ease;
+    transition:
+      border-color 120ms ease,
+      transform 120ms ease;
   }
-  .post-card:hover { border-color: var(--color-yellow-500); transform: translateY(-2px); }
-  .post-card time { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .post-card h3 { margin: 8px 0; }
-  .post-card p { margin: 0 0 12px; color: var(--color-ink-600); }
-  .read-more { font-size: var(--text-xs); font-weight: 600; color: var(--color-red-500); }
+  .post-card:hover {
+    border-color: var(--color-yellow-500);
+    transform: translateY(-2px);
+  }
+  .post-card time {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .post-card h3 {
+    margin: 8px 0;
+  }
+  .post-card p {
+    margin: 0 0 12px;
+    color: var(--color-ink-600);
+  }
+  .read-more {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-red-500);
+  }
 </style>
 ```
 
@@ -2922,11 +3373,14 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props { post: CollectionEntry<'blog'>; }
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
 const { post } = Astro.props;
 const { Content } = await post.render();
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath={`/blog/${post.data.slug}/`}
@@ -2940,11 +3394,15 @@ const locale = 'es' as const;
       <p class="summary">{post.data.summary}</p>
       <div class="meta">
         <span>{post.data.author}</span>
-        {post.data.tags.length > 0 && (
-          <span class="tags">
-            {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
-          </span>
-        )}
+        {
+          post.data.tags.length > 0 && (
+            <span class="tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag">#{tag}</span>
+              ))}
+            </span>
+          )
+        }
       </div>
     </header>
     <div class="prose">
@@ -2954,17 +3412,47 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .post { max-width: 70ch; }
-  .post-header { margin-bottom: 32px; }
-  .post-header time { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .post-header h1 { margin: 8px 0 16px; }
-  .summary { font-size: var(--text-md); color: var(--color-ink-600); }
-  .meta { display: flex; gap: 16px; font-size: var(--text-xs); color: var(--color-ink-600); margin-top: 12px; }
-  .tags { display: inline-flex; gap: 6px; }
-  .tag { color: var(--color-red-500); }
-  .prose :global(h2) { margin-top: 32px; }
-  .prose :global(p) { margin-bottom: 16px; color: var(--color-ink-700); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .post {
+    max-width: 70ch;
+  }
+  .post-header {
+    margin-bottom: 32px;
+  }
+  .post-header time {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .post-header h1 {
+    margin: 8px 0 16px;
+  }
+  .summary {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: var(--text-xs);
+    color: var(--color-ink-600);
+    margin-top: 12px;
+  }
+  .tags {
+    display: inline-flex;
+    gap: 6px;
+  }
+  .tag {
+    color: var(--color-red-500);
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -2979,9 +3467,11 @@ import { t } from '@/i18n/t';
 const locale = 'en' as const;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const posts = (await getCollection('blog', ({ data }) => data.locale === 'en' && !data.draft))
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+const posts = (await getCollection('blog', ({ data }) => data.locale === 'en' && !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/blog/"
@@ -2992,36 +3482,81 @@ const posts = (await getCollection('blog', ({ data }) => data.locale === 'en' &&
     <h1>{t('blog.title', locale)}</h1>
     <p class="lede">{t('blog.subtitle', locale)}</p>
 
-    {posts.length === 0 ? (
-      <p class="empty">{t('blog.empty', locale)}</p>
-    ) : (
-      <ul class="post-list">
-        {posts.map((post) => (
-          <li>
-            <a href={`${base}/en/blog/${post.data.slug}/`} class="post-card">
-              <time>{post.data.publishDate.toLocaleDateString('en-US', { dateStyle: 'long' })}</time>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.summary}</p>
-              <span class="read-more">{t('blog.readMore', locale)} →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+    {
+      posts.length === 0 ? (
+        <p class="empty">{t('blog.empty', locale)}</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li>
+              <a href={`${base}/en/blog/${post.data.slug}/`} class="post-card">
+                <time>
+                  {post.data.publishDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
+                </time>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.summary}</p>
+                <span class="read-more">{t('blog.readMore', locale)} →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .lede { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin-bottom: 48px; }
-  .empty { color: var(--color-ink-400); }
-  .post-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-  .post-card { display: block; padding: 24px; border: 1px solid var(--color-paper-200); border-radius: var(--radius-lg); background: var(--color-paper-50); text-decoration: none; color: inherit; transition: border-color 120ms ease, transform 120ms ease; }
-  .post-card:hover { border-color: var(--color-yellow-500); transform: translateY(-2px); }
-  .post-card time { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .post-card h3 { margin: 8px 0; }
-  .post-card p { margin: 0 0 12px; color: var(--color-ink-600); }
-  .read-more { font-size: var(--text-xs); font-weight: 600; color: var(--color-red-500); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .lede {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+  .empty {
+    color: var(--color-ink-400);
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+  .post-card {
+    display: block;
+    padding: 24px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 120ms ease,
+      transform 120ms ease;
+  }
+  .post-card:hover {
+    border-color: var(--color-yellow-500);
+    transform: translateY(-2px);
+  }
+  .post-card time {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .post-card h3 {
+    margin: 8px 0;
+  }
+  .post-card p {
+    margin: 0 0 12px;
+    color: var(--color-ink-600);
+  }
+  .read-more {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-red-500);
+  }
 </style>
 ```
 
@@ -3042,11 +3577,14 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props { post: CollectionEntry<'blog'>; }
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
 const { post } = Astro.props;
 const { Content } = await post.render();
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath={`/en/blog/${post.data.slug}/`}
@@ -3060,11 +3598,15 @@ const locale = 'en' as const;
       <p class="summary">{post.data.summary}</p>
       <div class="meta">
         <span>{post.data.author}</span>
-        {post.data.tags.length > 0 && (
-          <span class="tags">
-            {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
-          </span>
-        )}
+        {
+          post.data.tags.length > 0 && (
+            <span class="tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag">#{tag}</span>
+              ))}
+            </span>
+          )
+        }
       </div>
     </header>
     <div class="prose">
@@ -3074,17 +3616,47 @@ const locale = 'en' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .post { max-width: 70ch; }
-  .post-header { margin-bottom: 32px; }
-  .post-header time { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .post-header h1 { margin: 8px 0 16px; }
-  .summary { font-size: var(--text-md); color: var(--color-ink-600); }
-  .meta { display: flex; gap: 16px; font-size: var(--text-xs); color: var(--color-ink-600); margin-top: 12px; }
-  .tags { display: inline-flex; gap: 6px; }
-  .tag { color: var(--color-red-500); }
-  .prose :global(h2) { margin-top: 32px; }
-  .prose :global(p) { margin-bottom: 16px; color: var(--color-ink-700); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .post {
+    max-width: 70ch;
+  }
+  .post-header {
+    margin-bottom: 32px;
+  }
+  .post-header time {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .post-header h1 {
+    margin: 8px 0 16px;
+  }
+  .summary {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: var(--text-xs);
+    color: var(--color-ink-600);
+    margin-top: 12px;
+  }
+  .tags {
+    display: inline-flex;
+    gap: 6px;
+  }
+  .tag {
+    color: var(--color-red-500);
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -3105,11 +3677,14 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props { doc: CollectionEntry<'legal'>; }
+interface Props {
+  doc: CollectionEntry<'legal'>;
+}
 const { doc } = Astro.props;
 const { Content } = await doc.render();
 const locale = 'es' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath={`/legal/${doc.data.slug}/`}
@@ -3120,8 +3695,11 @@ const locale = 'es' as const;
     <header class="legal-header">
       <h1>{doc.data.title}</h1>
       <p class="meta">
-        {t('legal.lastUpdated', locale)}: {doc.data.lastUpdated.toLocaleDateString('es-CO', { dateStyle: 'long' })}
-        · {t('legal.version', locale)} {doc.data.version}
+        {t('legal.lastUpdated', locale)}: {
+          doc.data.lastUpdated.toLocaleDateString('es-CO', { dateStyle: 'long' })
+        }
+        · {t('legal.version', locale)}
+        {doc.data.version}
       </p>
     </header>
     <div class="prose">
@@ -3131,13 +3709,31 @@ const locale = 'es' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .legal { max-width: 70ch; }
-  .legal-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--color-paper-200); }
-  .meta { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .prose :global(h1) { display: none; }
-  .prose :global(h2) { margin-top: 32px; }
-  .prose :global(p) { margin-bottom: 16px; color: var(--color-ink-700); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .legal {
+    max-width: 70ch;
+  }
+  .legal-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-paper-200);
+  }
+  .meta {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .prose :global(h1) {
+    display: none;
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -3158,11 +3754,14 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props { doc: CollectionEntry<'legal'>; }
+interface Props {
+  doc: CollectionEntry<'legal'>;
+}
 const { doc } = Astro.props;
 const { Content } = await doc.render();
 const locale = 'en' as const;
 ---
+
 <PageLayout
   locale={locale}
   currentPath={`/en/legal/${doc.data.slug}/`}
@@ -3173,8 +3772,11 @@ const locale = 'en' as const;
     <header class="legal-header">
       <h1>{doc.data.title}</h1>
       <p class="meta">
-        {t('legal.lastUpdated', locale)}: {doc.data.lastUpdated.toLocaleDateString('en-US', { dateStyle: 'long' })}
-        · {t('legal.version', locale)} {doc.data.version}
+        {t('legal.lastUpdated', locale)}: {
+          doc.data.lastUpdated.toLocaleDateString('en-US', { dateStyle: 'long' })
+        }
+        · {t('legal.version', locale)}
+        {doc.data.version}
       </p>
     </header>
     <div class="prose">
@@ -3184,13 +3786,31 @@ const locale = 'en' as const;
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .legal { max-width: 70ch; }
-  .legal-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--color-paper-200); }
-  .meta { font-size: var(--text-xs); color: var(--color-ink-400); }
-  .prose :global(h1) { display: none; }
-  .prose :global(h2) { margin-top: 32px; }
-  .prose :global(p) { margin-bottom: 16px; color: var(--color-ink-700); }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .legal {
+    max-width: 70ch;
+  }
+  .legal-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-paper-200);
+  }
+  .meta {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .prose :global(h1) {
+    display: none;
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
 </style>
 ```
 
@@ -3204,8 +3824,9 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'es' as const;
 
-const items = (await getCollection('faqs', ({ data }) => data.locale === 'es'))
-  .sort((a, b) => a.data.order - b.data.order);
+const items = (await getCollection('faqs', ({ data }) => data.locale === 'es')).sort(
+  (a, b) => a.data.order - b.data.order
+);
 
 const categories = ['general', 'compliance', 'fees', 'process', 'security'] as const;
 const grouped = categories.map((cat) => ({
@@ -3213,6 +3834,7 @@ const grouped = categories.map((cat) => ({
   items: items.filter((i) => i.data.category === cat),
 }));
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/preguntas-frecuentes/"
@@ -3222,32 +3844,47 @@ const grouped = categories.map((cat) => ({
   <section class="container-page page-section">
     <h1>{t('faqs.title', locale)}</h1>
 
-    {grouped.filter((g) => g.items.length > 0).map((group) => (
-      <div class="category-block">
-        <h2>{t(`faqs.category.${group.category}` as const, locale)}</h2>
-        <div class="faq-list">
-          {group.items.map(async (entry) => {
-            const { Content } = await entry.render();
-            return (
-              <details class="faq">
-                <summary>{entry.data.question}</summary>
-                <div class="answer">
-                  <Content />
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </div>
-    ))}
+    {
+      grouped
+        .filter((g) => g.items.length > 0)
+        .map((group) => (
+          <div class="category-block">
+            <h2>{t(`faqs.category.${group.category}` as const, locale)}</h2>
+            <div class="faq-list">
+              {group.items.map(async (entry) => {
+                const { Content } = await entry.render();
+                return (
+                  <details class="faq">
+                    <summary>{entry.data.question}</summary>
+                    <div class="answer">
+                      <Content />
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </div>
+        ))
+    }
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .category-block { margin-bottom: 32px; }
-  .category-block h2 { margin: 24px 0 12px; font-size: var(--text-md); color: var(--color-ink-600); }
-  .faq-list { display: grid; gap: 8px; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .category-block {
+    margin-bottom: 32px;
+  }
+  .category-block h2 {
+    margin: 24px 0 12px;
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+  }
+  .faq-list {
+    display: grid;
+    gap: 8px;
+  }
   .faq {
     border: 1px solid var(--color-paper-200);
     border-radius: var(--radius-md);
@@ -3271,12 +3908,16 @@ const grouped = categories.map((cat) => ({
     color: var(--color-red-500);
     font-weight: 700;
   }
-  .faq[open] summary::after { content: '−'; }
+  .faq[open] summary::after {
+    content: '−';
+  }
   .faq .answer {
     padding: 0 20px 16px;
     color: var(--color-ink-700);
   }
-  .faq .answer :global(p) { margin: 0; }
+  .faq .answer :global(p) {
+    margin: 0;
+  }
 </style>
 ```
 
@@ -3290,8 +3931,9 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import { t } from '@/i18n/t';
 const locale = 'en' as const;
 
-const items = (await getCollection('faqs', ({ data }) => data.locale === 'en'))
-  .sort((a, b) => a.data.order - b.data.order);
+const items = (await getCollection('faqs', ({ data }) => data.locale === 'en')).sort(
+  (a, b) => a.data.order - b.data.order
+);
 
 const categories = ['general', 'compliance', 'fees', 'process', 'security'] as const;
 const grouped = categories.map((cat) => ({
@@ -3299,6 +3941,7 @@ const grouped = categories.map((cat) => ({
   items: items.filter((i) => i.data.category === cat),
 }));
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/faqs/"
@@ -3308,38 +3951,80 @@ const grouped = categories.map((cat) => ({
   <section class="container-page page-section">
     <h1>{t('faqs.title', locale)}</h1>
 
-    {grouped.filter((g) => g.items.length > 0).map((group) => (
-      <div class="category-block">
-        <h2>{t(`faqs.category.${group.category}` as const, locale)}</h2>
-        <div class="faq-list">
-          {group.items.map(async (entry) => {
-            const { Content } = await entry.render();
-            return (
-              <details class="faq">
-                <summary>{entry.data.question}</summary>
-                <div class="answer">
-                  <Content />
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </div>
-    ))}
+    {
+      grouped
+        .filter((g) => g.items.length > 0)
+        .map((group) => (
+          <div class="category-block">
+            <h2>{t(`faqs.category.${group.category}` as const, locale)}</h2>
+            <div class="faq-list">
+              {group.items.map(async (entry) => {
+                const { Content } = await entry.render();
+                return (
+                  <details class="faq">
+                    <summary>{entry.data.question}</summary>
+                    <div class="answer">
+                      <Content />
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </div>
+        ))
+    }
   </section>
 </PageLayout>
 
 <style>
-  .page-section { padding-block: 64px 80px; }
-  .category-block { margin-bottom: 32px; }
-  .category-block h2 { margin: 24px 0 12px; font-size: var(--text-md); color: var(--color-ink-600); }
-  .faq-list { display: grid; gap: 8px; }
-  .faq { border: 1px solid var(--color-paper-200); border-radius: var(--radius-md); background: var(--color-paper-50); overflow: hidden; }
-  .faq summary { list-style: none; cursor: pointer; padding: 16px 20px; font-weight: 600; color: var(--color-ink-900); position: relative; }
-  .faq summary::after { content: '+'; position: absolute; right: 20px; top: 14px; font-size: var(--text-md); color: var(--color-red-500); font-weight: 700; }
-  .faq[open] summary::after { content: '−'; }
-  .faq .answer { padding: 0 20px 16px; color: var(--color-ink-700); }
-  .faq .answer :global(p) { margin: 0; }
+  .page-section {
+    padding-block: 64px 80px;
+  }
+  .category-block {
+    margin-bottom: 32px;
+  }
+  .category-block h2 {
+    margin: 24px 0 12px;
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+  }
+  .faq-list {
+    display: grid;
+    gap: 8px;
+  }
+  .faq {
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-md);
+    background: var(--color-paper-50);
+    overflow: hidden;
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--color-ink-900);
+    position: relative;
+  }
+  .faq summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 14px;
+    font-size: var(--text-md);
+    color: var(--color-red-500);
+    font-weight: 700;
+  }
+  .faq[open] summary::after {
+    content: '−';
+  }
+  .faq .answer {
+    padding: 0 20px 16px;
+    color: var(--color-ink-700);
+  }
+  .faq .answer :global(p) {
+    margin: 0;
+  }
 </style>
 ```
 
@@ -3371,6 +4056,7 @@ git commit -m "feat(pages): add dynamic blog, legal, and FAQs pages (es + en)"
 ### Task 13: Quote types and mock rates module
 
 **Files:**
+
 - Create: `src/lib/quote/types.ts`
 - Create: `src/lib/quote/mock-rates.ts`
 
@@ -3458,6 +4144,7 @@ git commit -m "feat(quote): add types and mock rate config"
 ### Task 14: getQuote() function with TDD
 
 **Files:**
+
 - Create: `tests/quote.test.ts`
 - Create: `src/lib/quote/get-quote.ts`
 
@@ -3509,17 +4196,25 @@ describe('getQuote', () => {
   });
 
   it('rejects non-positive amounts', async () => {
-    await expect(getQuote({ pairId: 'COP-USDT', amount: 0, side: 'from' })).rejects.toThrow(/positive/);
-    await expect(getQuote({ pairId: 'COP-USDT', amount: -1, side: 'from' })).rejects.toThrow(/positive/);
+    await expect(getQuote({ pairId: 'COP-USDT', amount: 0, side: 'from' })).rejects.toThrow(
+      /positive/
+    );
+    await expect(getQuote({ pairId: 'COP-USDT', amount: -1, side: 'from' })).rejects.toThrow(
+      /positive/
+    );
   });
 
   it('rejects amounts below the pair minimum', async () => {
-    await expect(getQuote({ pairId: 'COP-USDT', amount: 1000, side: 'from' })).rejects.toThrow(/minimum/);
+    await expect(getQuote({ pairId: 'COP-USDT', amount: 1000, side: 'from' })).rejects.toThrow(
+      /minimum/
+    );
   });
 
   it('rejects unknown pairId', async () => {
     // @ts-expect-error testing runtime guard
-    await expect(getQuote({ pairId: 'XYZ-COP', amount: 100, side: 'from' })).rejects.toThrow(/pair/i);
+    await expect(getQuote({ pairId: 'XYZ-COP', amount: 100, side: 'from' })).rejects.toThrow(
+      /pair/i
+    );
   });
 });
 ```
@@ -3537,12 +4232,7 @@ Expected: FAIL — `Cannot find module '@/lib/quote/get-quote'`.
 ```typescript
 // src/lib/quote/get-quote.ts
 import type { QuoteRequest, QuoteResponse } from './types';
-import {
-  PAIRS,
-  MOCK_MID_RATES,
-  DEFAULT_SPREAD_BPS,
-  QUOTE_VALIDITY_SECONDS,
-} from './mock-rates';
+import { PAIRS, MOCK_MID_RATES, DEFAULT_SPREAD_BPS, QUOTE_VALIDITY_SECONDS } from './mock-rates';
 
 const JITTER_BPS_RANGE = 20;
 
@@ -3619,6 +4309,7 @@ git commit -m "feat(quote): implement getQuote() with mock rates, spread, jitter
 ### Task 15: Locale formatters with TDD
 
 **Files:**
+
 - Create: `tests/formatters.test.ts`
 - Create: `src/lib/quote/formatters.ts`
 
@@ -3718,9 +4409,8 @@ export function parseAmount(input: string, locale: Locale): number {
   const cleaned = input.trim();
   if (cleaned.length === 0) return NaN;
 
-  const normalized = locale === 'es'
-    ? cleaned.replace(/\./g, '').replace(',', '.')
-    : cleaned.replace(/,/g, '');
+  const normalized =
+    locale === 'es' ? cleaned.replace(/\./g, '').replace(',', '.') : cleaned.replace(/,/g, '');
 
   const num = Number(normalized);
   return Number.isFinite(num) ? num : NaN;
@@ -3756,6 +4446,7 @@ git commit -m "feat(quote): add locale-aware formatters with TDD"
 ### Task 16: QuoteWidget React component
 
 **Files:**
+
 - Create: `src/components/quote/QuoteWidget.tsx`
 
 - [ ] **Step 1: Implement QuoteWidget**
@@ -3776,7 +4467,10 @@ interface Props {
   defaultPair?: PairId;
 }
 
-const PAIR_LABEL_KEY: Record<PairId, 'quote.pair.copToUsdt' | 'quote.pair.usdtToCop' | 'quote.pair.copToUsdc' | 'quote.pair.usdcToCop'> = {
+const PAIR_LABEL_KEY: Record<
+  PairId,
+  'quote.pair.copToUsdt' | 'quote.pair.usdtToCop' | 'quote.pair.copToUsdc' | 'quote.pair.usdcToCop'
+> = {
   'COP-USDT': 'quote.pair.copToUsdt',
   'USDT-COP': 'quote.pair.usdtToCop',
   'COP-USDC': 'quote.pair.copToUsdc',
@@ -3839,7 +4533,9 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
   return (
     <div className="quote-widget">
       <div className="qw-row">
-        <label className="qw-label" htmlFor="qw-pair">{t('quote.direction', locale)}</label>
+        <label className="qw-label" htmlFor="qw-pair">
+          {t('quote.direction', locale)}
+        </label>
         <select
           id="qw-pair"
           className="qw-select"
@@ -3848,7 +4544,9 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
           aria-label={t('quote.direction', locale)}
         >
           {(Object.keys(PAIRS) as PairId[]).map((id) => (
-            <option key={id} value={id}>{t(PAIR_LABEL_KEY[id], locale)}</option>
+            <option key={id} value={id}>
+              {t(PAIR_LABEL_KEY[id], locale)}
+            </option>
           ))}
         </select>
       </div>
@@ -3869,19 +4567,34 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
       </div>
 
       <div className="qw-result">
-        {loading && <div className="qw-loading"><RefreshCw size={16} className="qw-spin" /></div>}
-        {error && <div className="qw-error" role="alert">{error}</div>}
+        {loading && (
+          <div className="qw-loading">
+            <RefreshCw size={16} className="qw-spin" />
+          </div>
+        )}
+        {error && (
+          <div className="qw-error" role="alert">
+            {error}
+          </div>
+        )}
         {quote && !loading && !error && (
           <>
             <div className="qw-amount">
-              <span className="qw-amount-label">{t('quote.to', locale)} ({pair.to.code})</span>
+              <span className="qw-amount-label">
+                {t('quote.to', locale)} ({pair.to.code})
+              </span>
               <span className="qw-amount-value">
                 {formatAmount(quote.toAmount, pair.to.code, locale)}
               </span>
             </div>
             <div className="qw-meta">
-              <span>{t('quote.rate', locale)}: 1 {pair.from.code} = {formatRate(quote.rate, locale)} {pair.to.code}</span>
-              <span className="qw-badge">{t(quote.source === 'mock' ? 'quote.source.mock' : 'quote.source.api', locale)}</span>
+              <span>
+                {t('quote.rate', locale)}: 1 {pair.from.code} = {formatRate(quote.rate, locale)}{' '}
+                {pair.to.code}
+              </span>
+              <span className="qw-badge">
+                {t(quote.source === 'mock' ? 'quote.source.mock' : 'quote.source.api', locale)}
+              </span>
             </div>
           </>
         )}
@@ -3892,7 +4605,9 @@ export default function QuoteWidget({ locale, appBaseUrl, defaultPair = 'COP-USD
         href={continueUrl ?? '#'}
         aria-disabled={!continueUrl}
         tabIndex={continueUrl ? 0 : -1}
-        onClick={(e) => { if (!continueUrl) e.preventDefault(); }}
+        onClick={(e) => {
+          if (!continueUrl) e.preventDefault();
+        }}
       >
         {t('cta.continue', locale)} <ArrowRight size={16} />
       </a>
@@ -3975,6 +4690,7 @@ git commit -m "feat(quote): add QuoteWidget React island with pair selector, amo
 ### Task 17: QuoteWidget tests
 
 **Files:**
+
 - Create: `tests/components/QuoteWidget.test.tsx`
 
 - [ ] **Step 1: Write tests**
@@ -4004,9 +4720,12 @@ describe('QuoteWidget', () => {
     const input = screen.getByLabelText(/envías/i) as HTMLInputElement;
     fireEvent.change(input, { target: { value: '1.000.000' } });
 
-    await waitFor(() => {
-      expect(screen.getByText(/recibes/i)).toBeInTheDocument();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.getByText(/recibes/i)).toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
 
     expect(screen.getByText(/tasa/i)).toBeInTheDocument();
   });
@@ -4022,9 +4741,12 @@ describe('QuoteWidget', () => {
     render(<QuoteWidget {...baseProps} />);
     const input = screen.getByLabelText(/envías/i) as HTMLInputElement;
     fireEvent.change(input, { target: { value: '500' } });
-    await waitFor(() => {
-      expect(screen.getByRole('alert')).toHaveTextContent(/minimum|mínimo/i);
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.getByRole('alert')).toHaveTextContent(/minimum|mínimo/i);
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('renders English labels when locale is "en"', () => {
@@ -4037,12 +4759,15 @@ describe('QuoteWidget', () => {
     render(<QuoteWidget {...baseProps} />);
     fireEvent.change(screen.getByLabelText(/envías/i), { target: { value: '1.000.000' } });
 
-    await waitFor(() => {
-      const link = screen.getByRole('link', { name: /continuar/i }) as HTMLAnchorElement;
-      expect(link.href).toContain('app.colswap.tech/request');
-      expect(link.href).toContain('pair=COP-USDT');
-      expect(link.href).toContain('amount=1000000');
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        const link = screen.getByRole('link', { name: /continuar/i }) as HTMLAnchorElement;
+        expect(link.href).toContain('app.colswap.tech/request');
+        expect(link.href).toContain('pair=COP-USDT');
+        expect(link.href).toContain('amount=1000000');
+      },
+      { timeout: 1000 }
+    );
   });
 });
 ```
@@ -4067,6 +4792,7 @@ git commit -m "test(quote): add QuoteWidget component tests covering both locale
 ### Task 18: Mount QuoteWidget on home pages
 
 **Files:**
+
 - Modify: `src/pages/index.astro`
 - Modify: `src/pages/en/index.astro`
 
@@ -4086,6 +4812,7 @@ import { t } from '@/i18n/t';
 const locale = 'es' as const;
 const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.tech';
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/"
@@ -4120,8 +4847,16 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     gap: 48px;
     align-items: center;
   }
-  .hero h1 { font-size: clamp(var(--text-xl), 4vw, var(--text-3xl)); margin: 0 0 20px; }
-  .hero-sub { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin: 0; }
+  .hero h1 {
+    font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
+    margin: 0 0 20px;
+  }
+  .hero-sub {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin: 0;
+  }
   .hero-widget-slot {
     background: var(--color-paper-50);
     border: 1px solid var(--color-paper-200);
@@ -4129,7 +4864,9 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     padding: 24px;
   }
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -4147,6 +4884,7 @@ import { t } from '@/i18n/t';
 const locale = 'en' as const;
 const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.tech';
 ---
+
 <PageLayout
   locale={locale}
   currentPath="/en/"
@@ -4181,8 +4919,16 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     gap: 48px;
     align-items: center;
   }
-  .hero h1 { font-size: clamp(var(--text-xl), 4vw, var(--text-3xl)); margin: 0 0 20px; }
-  .hero-sub { font-size: var(--text-md); color: var(--color-ink-600); max-width: 60ch; margin: 0; }
+  .hero h1 {
+    font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
+    margin: 0 0 20px;
+  }
+  .hero-sub {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin: 0;
+  }
   .hero-widget-slot {
     background: var(--color-paper-50);
     border: 1px solid var(--color-paper-200);
@@ -4190,7 +4936,9 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
     padding: 24px;
   }
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 ```
@@ -4220,6 +4968,7 @@ git commit -m "feat(home): mount QuoteWidget React island on home pages (es + en
 ### Task 19: ESLint + Prettier configuration
 
 **Files:**
+
 - Create: `eslint.config.mjs`
 - Create: `.prettierrc.json`
 - Create: `.prettierignore`
@@ -4314,6 +5063,7 @@ git commit -m "chore: configure ESLint flat config + Prettier"
 ### Task 20: GitHub Pages deploy workflow
 
 **Files:**
+
 - Create: `.github/workflows/deploy.yml`
 
 - [ ] **Step 1: Create workflow**
@@ -4388,6 +5138,7 @@ git commit -m "ci: add GitHub Pages deploy workflow with lint/typecheck/test gat
 ### Task 21: Cloudflare Pages workflow (disabled stub)
 
 **Files:**
+
 - Create: `.github/workflows/deploy-cloudflare.yml`
 
 - [ ] **Step 1: Create disabled workflow**
@@ -4440,11 +5191,12 @@ git commit -m "ci: add disabled Cloudflare Pages workflow as migration stub"
 ### Task 22: README
 
 **Files:**
+
 - Create: `README.md`
 
 - [ ] **Step 1: Write README**
 
-```markdown
+````markdown
 # ColSwap — Marketing Site
 
 Bilingual (es-CO / en) static marketing site for **ColSwap**, a Colombian non-custodial OTC platform for COP ↔ virtual asset conversions. Operates under Paytrium Digital Holding.
@@ -4467,19 +5219,20 @@ nvm use            # or install the version in .nvmrc
 npm install
 npm run dev        # http://localhost:4321/ColSwap-TEST/
 ```
+````
 
 ## Scripts
 
-| Script | Description |
-|---|---|
-| `npm run dev` | Start dev server |
-| `npm run build` | Static build to `dist/` |
-| `npm run preview` | Preview the production build |
-| `npm run typecheck` | `astro check` + `tsc --noEmit` |
-| `npm run lint` | ESLint + Prettier (check) |
-| `npm run lint:fix` | ESLint --fix + Prettier --write |
-| `npm test` | Run Vitest in watch mode |
-| `npm test -- --run` | Run Vitest once |
+| Script              | Description                     |
+| ------------------- | ------------------------------- |
+| `npm run dev`       | Start dev server                |
+| `npm run build`     | Static build to `dist/`         |
+| `npm run preview`   | Preview the production build    |
+| `npm run typecheck` | `astro check` + `tsc --noEmit`  |
+| `npm run lint`      | ESLint + Prettier (check)       |
+| `npm run lint:fix`  | ESLint --fix + Prettier --write |
+| `npm test`          | Run Vitest in watch mode        |
+| `npm test -- --run` | Run Vitest once                 |
 
 ## Architecture
 
@@ -4498,17 +5251,17 @@ The marketing site emits CTAs to `https://app.colswap.tech/...` for login, signu
 
 See `docs/superpowers/specs/2026-05-28-colswap-base-design.md` for the complete spec.
 
-| Path | Purpose |
-|---|---|
-| `src/pages/` | Astro pages (Spanish at root, English under `/en/`) |
-| `src/layouts/` | BaseLayout (head/meta) and PageLayout (header + footer wrapper) |
-| `src/components/` | Reusable Astro and React components |
-| `src/content/` | Markdown collections: `blog/`, `faqs/`, `legal/` (per locale) |
-| `src/i18n/` | UI strings (`es.json`, `en.json`), `t()` helper, route map |
-| `src/lib/quote/` | Quote engine: types, mock rates, `getQuote()`, formatters |
-| `src/lib/seo/` | SEO meta helpers |
-| `src/styles/` | `tokens.css` (single source of truth) + `globals.css` |
-| `tests/` | Vitest test files |
+| Path              | Purpose                                                         |
+| ----------------- | --------------------------------------------------------------- |
+| `src/pages/`      | Astro pages (Spanish at root, English under `/en/`)             |
+| `src/layouts/`    | BaseLayout (head/meta) and PageLayout (header + footer wrapper) |
+| `src/components/` | Reusable Astro and React components                             |
+| `src/content/`    | Markdown collections: `blog/`, `faqs/`, `legal/` (per locale)   |
+| `src/i18n/`       | UI strings (`es.json`, `en.json`), `t()` helper, route map      |
+| `src/lib/quote/`  | Quote engine: types, mock rates, `getQuote()`, formatters       |
+| `src/lib/seo/`    | SEO meta helpers                                                |
+| `src/styles/`     | `tokens.css` (single source of truth) + `globals.css`           |
+| `tests/`          | Vitest test files                                               |
 
 ## Adding content
 
@@ -4535,11 +5288,10 @@ Create `src/content/faqs/{es|en}/{slug}.md`:
 ```yaml
 ---
 question: '¿Pregunta?'
-category: 'general'   # general | compliance | fees | process | security
+category: 'general' # general | compliance | fees | process | security
 order: 5
 locale: 'es'
 ---
-
 Answer body in markdown.
 ```
 
@@ -4570,14 +5322,15 @@ Two seams are pre-built:
 - Spec: `docs/superpowers/specs/2026-05-28-colswap-base-design.md`
 - Plan: `docs/superpowers/plans/2026-05-28-colswap-base-implementation.md`
 - Business brief: held by Paytrium (WIP, internal)
-```
+
+````
 
 - [ ] **Step 2: Commit**
 
 ```bash
 git add README.md
 git commit -m "docs: add README with stack, scripts, structure, content guide, deploy notes"
-```
+````
 
 ---
 
@@ -4640,6 +5393,7 @@ Watch the Actions tab on GitHub. The workflow should complete within 2–3 minut
 - [ ] **Step 5: Verify live site**
 
 After the workflow finishes, open:
+
 - https://sickdancemoves.github.io/ColSwap-TEST/
 - https://sickdancemoves.github.io/ColSwap-TEST/en/
 
@@ -4657,6 +5411,7 @@ git push origin v0.1.0
 ## Self-Review (already done)
 
 **Spec coverage check:**
+
 - §3 In-scope items: all covered by tasks ✓
 - §3 Out-of-scope items: none accidentally implemented ✓
 - §5 Repo structure: matches the files created ✓

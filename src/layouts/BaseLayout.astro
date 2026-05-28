@@ -7,6 +7,7 @@ interface Props extends MetaInput {}
 const props = Astro.props;
 const meta = computeMeta(props);
 ---
+
 <!doctype html>
 <html lang={meta.htmlLang}>
   <head>
@@ -18,9 +19,7 @@ const meta = computeMeta(props);
     <link rel="canonical" href={meta.canonicalUrl} />
     {props.noIndex && <meta name="robots" content="noindex" />}
 
-    {meta.alternates.map((alt) => (
-      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
-    ))}
+    {meta.alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
 
     <meta property="og:title" content={meta.fullTitle} />
     <meta property="og:description" content={props.description} />
