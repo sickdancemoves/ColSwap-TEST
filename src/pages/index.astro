@@ -1,0 +1,66 @@
+---
+// src/pages/index.astro
+import PageLayout from '@/layouts/PageLayout.astro';
+import SalesContactCTA from '@/components/cta/SalesContactCTA.astro';
+import ComplianceBadges from '@/components/trust/ComplianceBadges.astro';
+import { t } from '@/i18n/t';
+
+const locale = 'es' as const;
+---
+<PageLayout
+  locale={locale}
+  currentPath="/"
+  title="ColSwap"
+  description={t('home.hero.subtitle', locale)}
+>
+  <section class="hero">
+    <div class="container-page hero-inner">
+      <div class="hero-copy">
+        <h1>{t('home.hero.title', locale)}</h1>
+        <p class="hero-sub">{t('home.hero.subtitle', locale)}</p>
+      </div>
+      <div class="hero-widget-slot">
+        <!-- QuoteWidget mounted in Task 18 -->
+        <div id="quote-widget-mount" data-locale="es"></div>
+      </div>
+    </div>
+  </section>
+
+  <SalesContactCTA locale={locale} />
+  <ComplianceBadges locale={locale} />
+</PageLayout>
+
+<style>
+  .hero {
+    padding-block: 80px;
+    background:
+      radial-gradient(ellipse at top right, var(--color-yellow-100), transparent 60%),
+      var(--color-paper-50);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(var(--text-xl), 4vw, var(--text-3xl));
+    margin: 0 0 20px;
+  }
+  .hero-sub {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .hero-widget-slot {
+    min-height: 360px;
+    background: var(--color-paper-50);
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+  }
+</style>
