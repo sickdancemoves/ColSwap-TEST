@@ -23,16 +23,16 @@ npm run dev        # http://localhost:4321/ColSwap-TEST/
 
 ## Scripts
 
-| Script | Description |
-|---|---|
-| `npm run dev` | Start dev server |
-| `npm run build` | Static build to `dist/` |
-| `npm run preview` | Preview the production build |
-| `npm run typecheck` | `astro check` + `tsc --noEmit` |
-| `npm run lint` | ESLint + Prettier (check) |
-| `npm run lint:fix` | ESLint --fix + Prettier --write |
-| `npm test` | Run Vitest in watch mode |
-| `npm test -- --run` | Run Vitest once |
+| Script              | Description                     |
+| ------------------- | ------------------------------- |
+| `npm run dev`       | Start dev server                |
+| `npm run build`     | Static build to `dist/`         |
+| `npm run preview`   | Preview the production build    |
+| `npm run typecheck` | `astro check` + `tsc --noEmit`  |
+| `npm run lint`      | ESLint + Prettier (check)       |
+| `npm run lint:fix`  | ESLint --fix + Prettier --write |
+| `npm test`          | Run Vitest in watch mode        |
+| `npm test -- --run` | Run Vitest once                 |
 
 ## Architecture
 
@@ -51,17 +51,17 @@ The marketing site emits CTAs to `https://app.colswap.tech/...` for login, signu
 
 See `docs/superpowers/specs/2026-05-28-colswap-base-design.md` for the complete spec.
 
-| Path | Purpose |
-|---|---|
-| `src/pages/` | Astro pages (Spanish at root, English under `/en/`) |
-| `src/layouts/` | BaseLayout (head/meta) and PageLayout (header + footer wrapper) |
-| `src/components/` | Reusable Astro and React components |
-| `src/content/` | Markdown collections: `blog/`, `faqs/`, `legal/` (per locale) |
-| `src/i18n/` | UI strings (`es.json`, `en.json`), `t()` helper, route map |
-| `src/lib/quote/` | Quote engine: types, mock rates, `getQuote()`, formatters |
-| `src/lib/seo/` | SEO meta helpers |
-| `src/styles/` | `tokens.css` (single source of truth) + `globals.css` |
-| `tests/` | Vitest test files |
+| Path              | Purpose                                                         |
+| ----------------- | --------------------------------------------------------------- |
+| `src/pages/`      | Astro pages (Spanish at root, English under `/en/`)             |
+| `src/layouts/`    | BaseLayout (head/meta) and PageLayout (header + footer wrapper) |
+| `src/components/` | Reusable Astro and React components                             |
+| `src/content/`    | Markdown collections: `blog/`, `faqs/`, `legal/` (per locale)   |
+| `src/i18n/`       | UI strings (`es.json`, `en.json`), `t()` helper, route map      |
+| `src/lib/quote/`  | Quote engine: types, mock rates, `getQuote()`, formatters       |
+| `src/lib/seo/`    | SEO meta helpers                                                |
+| `src/styles/`     | `tokens.css` (single source of truth) + `globals.css`           |
+| `tests/`          | Vitest test files                                               |
 
 ## Adding content
 
@@ -88,11 +88,10 @@ Create `src/content/faqs/{es|en}/{slug}.md`:
 ```yaml
 ---
 question: '¿Pregunta?'
-category: 'general'   # general | compliance | fees | process | security
+category: 'general' # general | compliance | fees | process | security
 order: 5
 locale: 'es'
 ---
-
 Answer body in markdown.
 ```
 
