@@ -1,0 +1,76 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+const locale = 'es' as const;
+
+const steps = [
+  { titleKey: 'howItWorks.step1.title', bodyKey: 'howItWorks.step1.body', n: 1 },
+  { titleKey: 'howItWorks.step2.title', bodyKey: 'howItWorks.step2.body', n: 2 },
+  { titleKey: 'howItWorks.step3.title', bodyKey: 'howItWorks.step3.body', n: 3 },
+  { titleKey: 'howItWorks.step4.title', bodyKey: 'howItWorks.step4.body', n: 4 },
+] as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/como-funciona/"
+  title={t('howItWorks.title', locale)}
+  description={t('howItWorks.intro', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('howItWorks.title', locale)}</h1>
+    <p class="lede">{t('howItWorks.intro', locale)}</p>
+
+    <ol class="steps">
+      {
+        steps.map((s) => (
+          <li class="step">
+            <div class="step-n">{s.n}</div>
+            <div>
+              <h3>{t(s.titleKey, locale)}</h3>
+              <p>{t(s.bodyKey, locale)}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</PageLayout>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 24px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 24px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .step-n {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-yellow-500);
+    color: var(--color-ink-900);
+    font-weight: 700;
+    font-size: var(--text-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step h3 {
+    margin: 0 0 8px;
+  }
+  .step p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
+</style>

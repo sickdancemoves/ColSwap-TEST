@@ -1,0 +1,43 @@
+---
+import '@/styles/globals.css';
+import { computeMeta, type MetaInput } from '@/lib/seo/meta';
+
+interface Props extends MetaInput {}
+
+const props = Astro.props;
+const meta = computeMeta(props);
+---
+
+<!doctype html>
+<html lang={meta.htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{meta.fullTitle}</title>
+    <meta name="description" content={props.description} />
+    <link rel="canonical" href={meta.canonicalUrl} />
+    {props.noIndex && <meta name="robots" content="noindex" />}
+
+    {meta.alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
+
+    <meta property="og:title" content={meta.fullTitle} />
+    <meta property="og:description" content={props.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={meta.canonicalUrl} />
+    <meta property="og:site_name" content="ColSwap" />
+    <meta property="og:locale" content={meta.ogLocale} />
+    {props.ogImage && <meta property="og:image" content={props.ogImage} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.fullTitle} />
+    <meta name="twitter:description" content={props.description} />
+
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

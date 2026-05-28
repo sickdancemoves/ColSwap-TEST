@@ -1,0 +1,60 @@
+---
+// src/components/cta/SalesContactCTA.astro
+import { type Locale, t } from '@/i18n/t';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const contactPath = locale === 'es' ? '/contacto/' : '/en/contact/';
+---
+
+<section class="sales-cta">
+  <div class="container-page sales-inner">
+    <p>{t('home.hero.salesLabel', locale)}</p>
+    <a href={`${base}${contactPath}`} class="btn-sales">
+      {t('cta.talkToSales', locale)}
+    </a>
+  </div>
+</section>
+
+<style>
+  .sales-cta {
+    background: var(--color-yellow-100);
+    border-block: 1px solid var(--color-yellow-300);
+  }
+  .sales-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 20px;
+  }
+  .sales-inner p {
+    margin: 0;
+    font-weight: 500;
+    color: var(--color-ink-700);
+  }
+  .btn-sales {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding-inline: 18px;
+    background: var(--color-ink-900);
+    color: var(--color-paper-50);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .btn-sales:hover {
+    background: var(--color-red-700);
+    color: var(--color-paper-50);
+  }
+  @media (max-width: 700px) {
+    .sales-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

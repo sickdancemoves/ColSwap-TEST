@@ -1,0 +1,65 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { t } from '@/i18n/t';
+const locale = 'es' as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/contacto/"
+  title={t('contact.title', locale)}
+  description={t('contact.subtitle', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('contact.title', locale)}</h1>
+    <p class="lede">{t('contact.subtitle', locale)}</p>
+
+    <div class="contact-grid">
+      <article class="contact-card">
+        <Icon name="lucide:briefcase" class="contact-icon" />
+        <h3>{t('contact.sales', locale)}</h3>
+        <a href="mailto:ventas@colswap.tech">ventas@colswap.tech</a>
+      </article>
+      <article class="contact-card">
+        <Icon name="lucide:mail" class="contact-icon" />
+        <h3>{t('contact.general', locale)}</h3>
+        <a href="mailto:hola@colswap.tech">hola@colswap.tech</a>
+      </article>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .lede {
+    margin-bottom: 32px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .contact-card {
+    padding: 28px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .contact-card h3 {
+    margin: 12px 0 8px;
+  }
+  .contact-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--color-red-500);
+  }
+  .contact-card a {
+    color: var(--color-ink-900);
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

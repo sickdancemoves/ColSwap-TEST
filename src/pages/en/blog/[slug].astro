@@ -1,0 +1,91 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.locale === 'en' && !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.data.urlSlug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+const locale = 'en' as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath={`/en/blog/${post.data.urlSlug}/`}
+  title={post.data.title}
+  description={post.data.summary}
+>
+  <article class="container-page page-section post">
+    <header class="post-header">
+      <time>{post.data.publishDate.toLocaleDateString('en-US', { dateStyle: 'long' })}</time>
+      <h1>{post.data.title}</h1>
+      <p class="summary">{post.data.summary}</p>
+      <div class="meta">
+        <span>{post.data.author}</span>
+        {
+          post.data.tags.length > 0 && (
+            <span class="tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag">#{tag}</span>
+              ))}
+            </span>
+          )
+        }
+      </div>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</PageLayout>
+
+<style>
+  .post {
+    max-width: 70ch;
+  }
+  .post-header {
+    margin-bottom: 32px;
+  }
+  .post-header time {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .post-header h1 {
+    margin: 8px 0 16px;
+  }
+  .summary {
+    font-size: var(--text-md);
+    color: var(--color-ink-600);
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: var(--text-xs);
+    color: var(--color-ink-600);
+    margin-top: 12px;
+  }
+  .tags {
+    display: inline-flex;
+    gap: 6px;
+  }
+  .tag {
+    color: var(--color-red-500);
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
+</style>

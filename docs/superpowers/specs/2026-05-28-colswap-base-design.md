@@ -160,34 +160,34 @@ ColSwap-TEST/
 
 ### Marketing pages (8, × 2 locales = 16 routes)
 
-| Spanish (default) | English | Purpose |
-|---|---|---|
-| `/` | `/en/` | Home: hero with quote widget + B2B sales CTA + trust signals (UIAF, KYC/KYB, AML) |
-| `/como-funciona/` | `/en/how-it-works/` | OTC flow explainer (4 steps: request → quote → wire → settle) |
-| `/precios/` | `/en/pricing/` | Spread structure, volume tiers, no hidden fees messaging |
-| `/empresas/` | `/en/business/` | B2B-focused: KYB process, dedicated account managers, use cases |
-| `/cumplimiento/` | `/en/compliance/` | UIAF registration, SARLAFT/SAGRILAFT, KYC/KYB, AML — the regulated-trust page |
-| `/sobre-nosotros/` | `/en/about/` | Paytrium Digital Holding context, mission, team (placeholder copy v1) |
-| `/contacto/` | `/en/contact/` | Email contact info, future Calendly link, address. No form at v1. |
-| `/preguntas-frecuentes/` | `/en/faqs/` | FAQ accordion rendered from `src/content/faqs/{locale}/*.md` |
+| Spanish (default)        | English             | Purpose                                                                           |
+| ------------------------ | ------------------- | --------------------------------------------------------------------------------- |
+| `/`                      | `/en/`              | Home: hero with quote widget + B2B sales CTA + trust signals (UIAF, KYC/KYB, AML) |
+| `/como-funciona/`        | `/en/how-it-works/` | OTC flow explainer (4 steps: request → quote → wire → settle)                     |
+| `/precios/`              | `/en/pricing/`      | Spread structure, volume tiers, no hidden fees messaging                          |
+| `/empresas/`             | `/en/business/`     | B2B-focused: KYB process, dedicated account managers, use cases                   |
+| `/cumplimiento/`         | `/en/compliance/`   | UIAF registration, SARLAFT/SAGRILAFT, KYC/KYB, AML — the regulated-trust page     |
+| `/sobre-nosotros/`       | `/en/about/`        | Paytrium Digital Holding context, mission, team (placeholder copy v1)             |
+| `/contacto/`             | `/en/contact/`      | Email contact info, future Calendly link, address. No form at v1.                 |
+| `/preguntas-frecuentes/` | `/en/faqs/`         | FAQ accordion rendered from `src/content/faqs/{locale}/*.md`                      |
 
 ### Dynamic content routes
 
-| Pattern | Locales | Source |
-|---|---|---|
-| `/blog/` + `/blog/[slug]/` | es default, `/en/blog/...` mirror | `src/content/blog/{locale}/*.md` |
-| `/legal/[slug]/` | es default, `/en/legal/...` mirror | `src/content/legal/{locale}/*.md` |
+| Pattern                    | Locales                            | Source                            |
+| -------------------------- | ---------------------------------- | --------------------------------- |
+| `/blog/` + `/blog/[slug]/` | es default, `/en/blog/...` mirror  | `src/content/blog/{locale}/*.md`  |
+| `/legal/[slug]/`           | es default, `/en/legal/...` mirror | `src/content/legal/{locale}/*.md` |
 
 Legal documents at v1: `terminos`, `privacidad`, `aml`, `cookies` (and their English equivalents `terms`, `privacy`, `aml`, `cookies`).
 
 ### CTAs (links only, no pages on this site)
 
-| Element | Today | Future |
-|---|---|---|
-| "Iniciar sesión" / "Sign in" | `https://app.colswap.tech/login` (404 until subdomain exists) | Real login on app subdomain |
-| "Crear cuenta" / "Sign up" | `https://app.colswap.tech/signup` | Real signup |
-| "Continuar" (from quote widget) | `https://app.colswap.tech/request?from=...&to=...&amount=...` | Real request flow |
-| "Hablar con ventas" | `mailto:ventas@colswap.tech?subject=...` | Form via CF Worker after migration |
+| Element                         | Today                                                         | Future                             |
+| ------------------------------- | ------------------------------------------------------------- | ---------------------------------- |
+| "Iniciar sesión" / "Sign in"    | `https://app.colswap.tech/login` (404 until subdomain exists) | Real login on app subdomain        |
+| "Crear cuenta" / "Sign up"      | `https://app.colswap.tech/signup`                             | Real signup                        |
+| "Continuar" (from quote widget) | `https://app.colswap.tech/request?from=...&to=...&amount=...` | Real request flow                  |
+| "Hablar con ventas"             | `mailto:ventas@colswap.tech?subject=...`                      | Form via CF Worker after migration |
 
 ## 7. Routing & i18n
 
@@ -280,15 +280,15 @@ The widget is loaded with `client:idle` (hydrated after the page becomes interac
 ```ts
 interface QuoteWidgetProps {
   locale: 'es' | 'en';
-  pairs: QuotePair[];       // injected from a config file
+  pairs: QuotePair[]; // injected from a config file
   defaultPair?: PairId;
-  appBaseUrl: string;        // for the "Continuar" CTA (env var)
+  appBaseUrl: string; // for the "Continuar" CTA (env var)
 }
 
 type QuotePair = {
   id: 'COP-USDT' | 'USDT-COP' | 'COP-USDC' | 'USDC-COP';
   from: { code: 'COP' | 'USDT' | 'USDC'; label: string; decimals: number; min: number };
-  to:   { code: 'COP' | 'USDT' | 'USDC'; label: string; decimals: number };
+  to: { code: 'COP' | 'USDT' | 'USDC'; label: string; decimals: number };
 };
 ```
 
@@ -299,17 +299,17 @@ type QuotePair = {
 export interface QuoteRequest {
   pairId: PairId;
   amount: number;
-  side: 'from' | 'to';   // user typed in the source or target box
+  side: 'from' | 'to'; // user typed in the source or target box
 }
 
 export interface QuoteResponse {
   pairId: PairId;
-  rate: number;                  // mid + spread embedded
-  spreadBps: number;             // for display ("Spread incluido: 1.5%")
+  rate: number; // mid + spread embedded
+  spreadBps: number; // for display ("Spread incluido: 1.5%")
   fromAmount: number;
   toAmount: number;
-  validUntil: string;            // ISO timestamp — 60s validity
-  source: 'mock' | 'api';        // for the small badge
+  validUntil: string; // ISO timestamp — 60s validity
+  source: 'mock' | 'api'; // for the small badge
 }
 
 export async function getQuote(req: QuoteRequest): Promise<QuoteResponse>;
@@ -338,24 +338,24 @@ All colors, type, spacing, and radii are declared once in `src/styles/tokens.css
 ```css
 :root {
   /* Brand — Colombian yellow */
-  --col-yellow-500: #FFD100;    /* primary */
-  --col-yellow-700: #D6A800;    /* hover, deeper surfaces */
-  --col-yellow-100: #FFF7CC;    /* tints, callouts */
+  --col-yellow-500: #ffd100; /* primary */
+  --col-yellow-700: #d6a800; /* hover, deeper surfaces */
+  --col-yellow-100: #fff7cc; /* tints, callouts */
 
   /* Accent — Colombian red */
-  --col-red-500: #C8102E;       /* emphasis, errors */
-  --col-red-700: #8E0B20;       /* red hover */
+  --col-red-500: #c8102e; /* emphasis, errors */
+  --col-red-700: #8e0b20; /* red hover */
 
   /* Neutrals */
-  --col-ink-900: #0E0E10;       /* body text */
-  --col-ink-600: #4A4A52;       /* secondary text */
-  --col-ink-400: #8A8A92;       /* tertiary, disabled */
-  --col-paper-50: #FAFAF7;      /* page bg — warm white */
-  --col-paper-200: #E9E5DA;     /* dividers */
-  --col-paper-900: #1A1A1C;     /* dark surfaces (footer) */
+  --col-ink-900: #0e0e10; /* body text */
+  --col-ink-600: #4a4a52; /* secondary text */
+  --col-ink-400: #8a8a92; /* tertiary, disabled */
+  --col-paper-50: #fafaf7; /* page bg — warm white */
+  --col-paper-200: #e9e5da; /* dividers */
+  --col-paper-900: #1a1a1c; /* dark surfaces (footer) */
 
   /* Semantic */
-  --col-success: #1B7F3B;
+  --col-success: #1b7f3b;
   --col-warning: var(--col-yellow-700);
   --col-danger: var(--col-red-500);
 
@@ -364,8 +364,14 @@ All colors, type, spacing, and radii are declared once in `src/styles/tokens.css
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Spacing — 4px base, modular */
-  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
-  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
 
   /* Radii — restrained */
   --radius-sm: 4px;
@@ -373,9 +379,9 @@ All colors, type, spacing, and radii are declared once in `src/styles/tokens.css
   --radius-lg: 16px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-  --shadow-lg: 0 16px 32px rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08);
 }
 ```
 
@@ -489,15 +495,15 @@ When custom domain + CF Pages migration happens, `site` becomes `https://colswap
 
 ## 13. Testing & quality
 
-| Layer | Tool | Coverage target |
-|---|---|---|
-| Unit | Vitest | `src/lib/quote/*` (math, edges), `src/lib/seo/*`, `src/i18n/t.ts` |
-| Component | Vitest + React Testing Library | `QuoteWidget` (direction switching, amount validation, locale formatting) |
-| i18n completeness | Vitest assertion | `es.json` keys ≡ `en.json` keys |
-| Content schema | Astro build | Zod schemas reject malformed frontmatter at build time |
-| Links | `astro-broken-links-checker` or similar | All internal links resolve on built `dist/` |
-| Performance | Lighthouse CI | Performance ≥ 90, A11y ≥ 95, SEO ≥ 95, Best Practices ≥ 95 |
-| E2E | (deferred) | Add Playwright once auth flows land on the app subdomain |
+| Layer             | Tool                                    | Coverage target                                                           |
+| ----------------- | --------------------------------------- | ------------------------------------------------------------------------- |
+| Unit              | Vitest                                  | `src/lib/quote/*` (math, edges), `src/lib/seo/*`, `src/i18n/t.ts`         |
+| Component         | Vitest + React Testing Library          | `QuoteWidget` (direction switching, amount validation, locale formatting) |
+| i18n completeness | Vitest assertion                        | `es.json` keys ≡ `en.json` keys                                           |
+| Content schema    | Astro build                             | Zod schemas reject malformed frontmatter at build time                    |
+| Links             | `astro-broken-links-checker` or similar | All internal links resolve on built `dist/`                               |
+| Performance       | Lighthouse CI                           | Performance ≥ 90, A11y ≥ 95, SEO ≥ 95, Best Practices ≥ 95                |
+| E2E               | (deferred)                              | Add Playwright once auth flows land on the app subdomain                  |
 
 ## 14. Future evolution & migration seams
 
@@ -507,10 +513,10 @@ The design has two deliberate seams that make future migration trivial:
 
 ```ts
 // today
-const quote = await getQuote(req);   // hits mock-rates.ts
+const quote = await getQuote(req); // hits mock-rates.ts
 
 // later
-const quote = await getQuote(req);   // hits app.colswap.tech/api/quote
+const quote = await getQuote(req); // hits app.colswap.tech/api/quote
 ```
 
 Component code, props, and JSX are unchanged. Only the body of `get-quote.ts` swaps. The `source: 'mock' | 'api'` field drives a visible badge change without code changes.
@@ -557,29 +563,29 @@ When live rates exist:
 
 ## 15. Open placeholders to resolve before launch
 
-| Item | Owner | Notes |
-|---|---|---|
-| Final brand identity (logo, colors, type) | Diego / brand partner | Yellow + red placeholder valid until then |
-| Custom domain choice (`colswap.tech` / `colswap.co` / other) | Diego | Brief leaves blank |
-| Real contact emails (`ventas@`, `hola@`) | Paytrium IT | Need before any "real" launch |
-| Compliance copy (UIAF, SARLAFT, AML disclosures) | Paytrium compliance team | Markdown, easy to edit |
-| Initial blog posts | TBD | Site ships with 0 posts and an empty index gracefully |
-| Sales Calendly link | Sales | Placeholder until then |
-| English translations of all UI strings | Diego / translator | es.json complete; en.json may start partial with `t()` throwing fail-fast for missing keys |
+| Item                                                         | Owner                    | Notes                                                                                      |
+| ------------------------------------------------------------ | ------------------------ | ------------------------------------------------------------------------------------------ |
+| Final brand identity (logo, colors, type)                    | Diego / brand partner    | Yellow + red placeholder valid until then                                                  |
+| Custom domain choice (`colswap.tech` / `colswap.co` / other) | Diego                    | Brief leaves blank                                                                         |
+| Real contact emails (`ventas@`, `hola@`)                     | Paytrium IT              | Need before any "real" launch                                                              |
+| Compliance copy (UIAF, SARLAFT, AML disclosures)             | Paytrium compliance team | Markdown, easy to edit                                                                     |
+| Initial blog posts                                           | TBD                      | Site ships with 0 posts and an empty index gracefully                                      |
+| Sales Calendly link                                          | Sales                    | Placeholder until then                                                                     |
+| English translations of all UI strings                       | Diego / translator       | es.json complete; en.json may start partial with `t()` throwing fail-fast for missing keys |
 
 ## 16. Decisions log (Q&A trail)
 
-| # | Decision | Choice | Rationale |
-|---|---|---|---|
-| 1 | Auth UI placement | Marketing CTAs only → real auth at future `app.colswap.tech` (fly-pay.io pattern) | Keeps GH Pages site pure-static; lets intranet evolve independently; no CORS coupling |
-| 2 | Languages | Bilingual es-CO (default) + en, path-prefix routing | B2B pipeline includes USD-cross-border clients; Spanish primary because Colombian market |
-| 3 | Conversion CTA | Quote widget hero (mocked) + B2B "Hablar con ventas" CTA | Dual funnel matches B2C + B2B target; widget validates the UX before real API |
-| 4 | Visual identity | Placeholder: 2 yellow shades + red accents (Colombian flag) | No brand book yet; placeholder distinguishes ColSwap from blue/green fintech default |
-| 5 | Build pipeline | Astro + React island | "As pro as possible" + portable to any host; islands keep marketing site at 0 JS |
-| 6 | Quote widget framework | React + TypeScript | Largest ecosystem, most familiar; ~40KB hydration overhead acceptable for one island |
-| 7 | Contact form backend | Skip at v1 — email only | Defer until CF Pages migration enables the Worker |
-| 8 | Custom domain | None at v1 — `sickdancemoves.github.io/ColSwap-TEST` | Brand not final; easy to add later |
-| 9 | Repo name | Keep `ColSwap-TEST` | Reads as staging/sandbox, accurate for WIP brief |
+| #   | Decision               | Choice                                                                            | Rationale                                                                                |
+| --- | ---------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 1   | Auth UI placement      | Marketing CTAs only → real auth at future `app.colswap.tech` (fly-pay.io pattern) | Keeps GH Pages site pure-static; lets intranet evolve independently; no CORS coupling    |
+| 2   | Languages              | Bilingual es-CO (default) + en, path-prefix routing                               | B2B pipeline includes USD-cross-border clients; Spanish primary because Colombian market |
+| 3   | Conversion CTA         | Quote widget hero (mocked) + B2B "Hablar con ventas" CTA                          | Dual funnel matches B2C + B2B target; widget validates the UX before real API            |
+| 4   | Visual identity        | Placeholder: 2 yellow shades + red accents (Colombian flag)                       | No brand book yet; placeholder distinguishes ColSwap from blue/green fintech default     |
+| 5   | Build pipeline         | Astro + React island                                                              | "As pro as possible" + portable to any host; islands keep marketing site at 0 JS         |
+| 6   | Quote widget framework | React + TypeScript                                                                | Largest ecosystem, most familiar; ~40KB hydration overhead acceptable for one island     |
+| 7   | Contact form backend   | Skip at v1 — email only                                                           | Defer until CF Pages migration enables the Worker                                        |
+| 8   | Custom domain          | None at v1 — `sickdancemoves.github.io/ColSwap-TEST`                              | Brand not final; easy to add later                                                       |
+| 9   | Repo name              | Keep `ColSwap-TEST`                                                               | Reads as staging/sandbox, accurate for WIP brief                                         |
 
 ## 17. References
 

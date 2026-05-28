@@ -1,0 +1,55 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+const locale = 'en' as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/en/about/"
+  title={t('about.title', locale)}
+  description={t('about.subtitle', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('about.title', locale)}</h1>
+    <p class="lede">{t('about.subtitle', locale)}</p>
+
+    <article class="prose">
+      <h2>Paytrium Digital Holding</h2>
+      <p>
+        ColSwap operates under Paytrium Digital Holding, a company focused on financial
+        infrastructure for emerging markets. Our team is distributed and combines experience in
+        regulation, engineering, and crypto operations.
+      </p>
+
+      <h2>Why Colombia, why OTC</h2>
+      <p>
+        Colombia has a growing volume of businesses and professionals with recurring conversion
+        needs between pesos and digital assets. The non-custodial OTC model eliminates balance risk
+        on our side and lets us execute at competitive rates with full regulatory traceability.
+      </p>
+
+      <h2>Our mission</h2>
+      <p>
+        Build the most trustworthy coordination layer for COP↔crypto conversions in Colombia, with
+        regulatory compliance from day one.
+      </p>
+    </article>
+  </section>
+</PageLayout>
+
+<style>
+  .lede {
+    margin-bottom: 32px;
+  }
+  .prose {
+    max-width: 70ch;
+  }
+  .prose h2 {
+    margin: 32px 0 12px;
+  }
+  .prose p {
+    margin: 0 0 16px;
+    color: var(--color-ink-700);
+  }
+</style>

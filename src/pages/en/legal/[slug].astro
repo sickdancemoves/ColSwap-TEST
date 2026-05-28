@@ -1,0 +1,68 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('legal', ({ data }) => data.locale === 'en');
+  return docs.map((doc) => ({
+    params: { slug: doc.data.urlSlug },
+    props: { doc },
+  }));
+}
+
+interface Props {
+  doc: CollectionEntry<'legal'>;
+}
+const { doc } = Astro.props;
+const { Content } = await doc.render();
+const locale = 'en' as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath={`/en/legal/${doc.data.urlSlug}/`}
+  title={doc.data.title}
+  description={doc.data.title}
+>
+  <article class="container-page page-section legal">
+    <header class="legal-header">
+      <h1>{doc.data.title}</h1>
+      <p class="meta">
+        {t('legal.lastUpdated', locale)}: {
+          doc.data.lastUpdated.toLocaleDateString('en-US', { dateStyle: 'long' })
+        }
+        · {t('legal.version', locale)}
+        {doc.data.version}
+      </p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</PageLayout>
+
+<style>
+  .legal {
+    max-width: 70ch;
+  }
+  .legal-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-paper-200);
+  }
+  .meta {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+  .prose :global(h1) {
+    display: none;
+  }
+  .prose :global(h2) {
+    margin-top: 32px;
+  }
+  .prose :global(p) {
+    margin-bottom: 16px;
+    color: var(--color-ink-700);
+  }
+</style>

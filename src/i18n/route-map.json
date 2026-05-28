@@ -1,0 +1,32 @@
+{
+  "es-to-en": {
+    "/": "/en/",
+    "/como-funciona/": "/en/how-it-works/",
+    "/precios/": "/en/pricing/",
+    "/empresas/": "/en/business/",
+    "/cumplimiento/": "/en/compliance/",
+    "/sobre-nosotros/": "/en/about/",
+    "/contacto/": "/en/contact/",
+    "/preguntas-frecuentes/": "/en/faqs/",
+    "/blog/": "/en/blog/",
+    "/legal/terminos/": "/en/legal/terms/",
+    "/legal/privacidad/": "/en/legal/privacy/",
+    "/legal/aml/": "/en/legal/aml/",
+    "/legal/cookies/": "/en/legal/cookies/"
+  },
+  "en-to-es": {
+    "/en/": "/",
+    "/en/how-it-works/": "/como-funciona/",
+    "/en/pricing/": "/precios/",
+    "/en/business/": "/empresas/",
+    "/en/compliance/": "/cumplimiento/",
+    "/en/about/": "/sobre-nosotros/",
+    "/en/contact/": "/contacto/",
+    "/en/faqs/": "/preguntas-frecuentes/",
+    "/en/blog/": "/blog/",
+    "/en/legal/terms/": "/legal/terminos/",
+    "/en/legal/privacy/": "/legal/privacidad/",
+    "/en/legal/aml/": "/legal/aml/",
+    "/en/legal/cookies/": "/legal/cookies/"
+  }
+}

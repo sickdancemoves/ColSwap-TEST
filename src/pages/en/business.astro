@@ -1,0 +1,79 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+import SalesContactCTA from '@/components/cta/SalesContactCTA.astro';
+const locale = 'en' as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/en/business/"
+  title={t('business.title', locale)}
+  description={t('business.subtitle', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('business.title', locale)}</h1>
+    <p class="lede">{t('business.subtitle', locale)}</p>
+
+    <div class="features">
+      <article>
+        <h3>Guided KYB</h3>
+        <p>
+          Our team walks you step by step through verifying the company, its UBOs, and operational
+          accounts.
+        </p>
+      </article>
+      <article>
+        <h3>Dedicated account manager</h3>
+        <p>
+          A single point of contact for your operations, quotes, reports, and incident resolution.
+        </p>
+      </article>
+      <article>
+        <h3>Operational reporting</h3>
+        <p>
+          Monthly reports with all your operations, applied rates, execution times, and traceability
+          for your books.
+        </p>
+      </article>
+      <article>
+        <h3>Fiat-to-crypto integration</h3>
+        <p>
+          We operate with PSE through SoyPago for COP inflows and with global liquidity providers
+          for crypto outflows.
+        </p>
+      </article>
+    </div>
+  </section>
+  <SalesContactCTA locale={locale} />
+</PageLayout>
+
+<style>
+  /* Override page-section: no bottom padding since SalesContactCTA follows */
+  .page-section {
+    padding-block: 64px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .features article {
+    padding: 24px;
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-50);
+  }
+  .features h3 {
+    margin: 0 0 8px;
+  }
+  .features p {
+    margin: 0;
+    color: var(--color-ink-600);
+  }
+  @media (max-width: 720px) {
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

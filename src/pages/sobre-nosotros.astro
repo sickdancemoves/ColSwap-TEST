@@ -1,0 +1,56 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+const locale = 'es' as const;
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/sobre-nosotros/"
+  title={t('about.title', locale)}
+  description={t('about.subtitle', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('about.title', locale)}</h1>
+    <p class="lede">{t('about.subtitle', locale)}</p>
+
+    <article class="prose">
+      <h2>Paytrium Digital Holding</h2>
+      <p>
+        ColSwap opera bajo Paytrium Digital Holding, una compañía dedicada a infraestructura
+        financiera para mercados emergentes. Nuestro equipo está distribuido y combina experiencia
+        en regulación, ingeniería y operaciones cripto.
+      </p>
+
+      <h2>Por qué Colombia, por qué OTC</h2>
+      <p>
+        Colombia tiene un volumen creciente de empresas y profesionales con necesidades de
+        conversión recurrente entre pesos y activos digitales. El modelo OTC no custodial elimina el
+        riesgo de saldo bajo nuestra responsabilidad y permite ejecutar a tasas competitivas con
+        trazabilidad regulatoria completa.
+      </p>
+
+      <h2>Nuestra misión</h2>
+      <p>
+        Construir la capa de coordinación más confiable para conversiones COP↔cripto en Colombia,
+        con cumplimiento regulatorio desde el primer día.
+      </p>
+    </article>
+  </section>
+</PageLayout>
+
+<style>
+  .lede {
+    margin-bottom: 32px;
+  }
+  .prose {
+    max-width: 70ch;
+  }
+  .prose h2 {
+    margin: 32px 0 12px;
+  }
+  .prose p {
+    margin: 0 0 16px;
+    color: var(--color-ink-700);
+  }
+</style>

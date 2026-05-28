@@ -1,0 +1,129 @@
+---
+// src/components/nav/Footer.astro
+import { type Locale, t, tInterpolate } from '@/i18n/t';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+
+const legalLinks =
+  locale === 'es'
+    ? [
+        { href: '/legal/terminos/', key: 'footer.legal.terms' as const },
+        { href: '/legal/privacidad/', key: 'footer.legal.privacy' as const },
+        { href: '/legal/aml/', key: 'footer.legal.aml' as const },
+        { href: '/legal/cookies/', key: 'footer.legal.cookies' as const },
+      ]
+    : [
+        { href: '/en/legal/terms/', key: 'footer.legal.terms' as const },
+        { href: '/en/legal/privacy/', key: 'footer.legal.privacy' as const },
+        { href: '/en/legal/aml/', key: 'footer.legal.aml' as const },
+        { href: '/en/legal/cookies/', key: 'footer.legal.cookies' as const },
+      ];
+---
+
+<footer class="site-footer">
+  <div class="container-page footer-inner">
+    <div class="footer-brand">
+      <div class="brand-mark"></div>
+      <div>
+        <div class="brand-name">ColSwap</div>
+        <div class="brand-tag">{t('footer.tagline', locale)}</div>
+      </div>
+    </div>
+
+    <nav class="footer-legal" aria-label="Legal">
+      <ul>
+        {
+          legalLinks.map((link) => (
+            <li>
+              <a href={`${base}${link.href}`}>{t(link.key, locale)}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="footer-meta">
+      <div>{t('footer.regulated', locale)}</div>
+      <div>{tInterpolate('footer.copyright', locale, { year })}</div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-paper-900);
+    color: var(--color-paper-200);
+    padding-block: 48px;
+    margin-top: 80px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-mark {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(
+      135deg,
+      var(--color-yellow-500) 0 60%,
+      var(--color-red-500) 60% 100%
+    );
+    border-radius: var(--radius-sm);
+  }
+  .brand-name {
+    font-weight: 700;
+    color: var(--color-paper-50);
+  }
+  .brand-tag {
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+  }
+
+  .footer-legal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer-legal a {
+    color: var(--color-paper-200);
+    text-decoration: none;
+    font-size: var(--text-xs);
+  }
+  .footer-legal a:hover {
+    color: var(--color-yellow-500);
+  }
+
+  .footer-meta {
+    text-align: right;
+    font-size: var(--text-xs);
+    color: var(--color-ink-400);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media (max-width: 700px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+    .footer-meta {
+      text-align: left;
+    }
+  }
+</style>
