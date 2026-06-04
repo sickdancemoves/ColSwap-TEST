@@ -1,0 +1,62 @@
+---
+// src/components/cta/PartnerCTA.astro
+import { type Locale, t } from '@/i18n/t';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const partnersPath = locale === 'es' ? '/aliados/' : '/en/partners/';
+---
+
+<section class="partner-cta">
+  <div class="container-page partner-inner">
+    <p>{t('home.partner.label', locale)}</p>
+    <a href={`${base}${partnersPath}`} class="btn-partner">
+      {t('cta.becomePartner', locale)}
+    </a>
+  </div>
+</section>
+
+<style>
+  .partner-cta {
+    background: var(--color-violet-500);
+    border-block: 1px solid var(--color-violet-700);
+  }
+  .partner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 20px;
+  }
+  .partner-inner p {
+    margin: 0;
+    font-weight: 500;
+    color: #fff;
+    max-width: 62ch;
+  }
+  .btn-partner {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding-inline: 18px;
+    background: var(--color-yellow-500);
+    color: var(--color-purple-900);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .btn-partner:hover {
+    background: var(--color-yellow-300);
+    color: var(--color-purple-900);
+  }
+  @media (max-width: 700px) {
+    .partner-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

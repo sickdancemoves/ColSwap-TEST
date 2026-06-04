@@ -2,6 +2,7 @@
 // src/pages/en/index.astro
 import PageLayout from '@/layouts/PageLayout.astro';
 import SalesContactCTA from '@/components/cta/SalesContactCTA.astro';
+import PartnerCTA from '@/components/cta/PartnerCTA.astro';
 import ComplianceBadges from '@/components/trust/ComplianceBadges.astro';
 import QuoteWidget from '@/components/quote/QuoteWidget';
 import { t } from '@/i18n/t';
@@ -28,6 +29,7 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
   </section>
   <SalesContactCTA locale={locale} />
   <ComplianceBadges locale={locale} />
+  <PartnerCTA locale={locale} />
 </PageLayout>
 
 <style>

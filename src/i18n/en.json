@@ -4,6 +4,7 @@
   "nav.pricing": "Pricing",
   "nav.business": "Business",
   "nav.compliance": "Compliance",
+  "nav.partners": "Partners",
   "nav.about": "About",
   "nav.contact": "Contact",
   "nav.faqs": "FAQs",
@@ -13,6 +14,7 @@
   "cta.signUp": "Sign up",
   "cta.requestQuote": "Request a quote",
   "cta.talkToSales": "Talk to sales",
+  "cta.becomePartner": "Become a partner",
   "cta.learnMore": "Learn more",
   "cta.continue": "Continue",
 
@@ -22,7 +24,7 @@
   "footer.legal.aml": "AML policy",
   "footer.legal.cookies": "Cookies",
   "footer.copyright": "© {year} Paytrium Digital Holding. All rights reserved.",
-  "footer.regulated": "Registered with UIAF as VASP",
+  "footer.regulated": "Registering with UIAF as a VASP",
 
   "lang.switchTo": "Español",
 
@@ -30,8 +32,9 @@
   "home.hero.subtitle": "Non-custodial OTC platform for businesses and professionals. Live rates, no custody, direct settlement to your wallet.",
   "home.hero.quoteLabel": "Get a quote",
   "home.hero.salesLabel": "High-volume business? Talk to our sales team.",
+  "home.partner.label": "Liquidity provider or banking partner? Let's build Colombia's COP↔crypto conversion layer together.",
   "home.trust.title": "Operating under the Colombian regulatory framework",
-  "home.trust.uiaf": "Registered with UIAF",
+  "home.trust.uiaf": "Registering with UIAF",
   "home.trust.aml": "Full AML program",
   "home.trust.kyc": "Automated KYC",
   "home.trust.kyb": "KYB for businesses",
@@ -67,6 +70,9 @@
 
   "business.title": "ColSwap for businesses",
   "business.subtitle": "Guided KYB, dedicated account managers, operational reporting.",
+
+  "partners.title": "Partnerships",
+  "partners.subtitle": "We're looking for liquidity providers and banking partners to scale COP↔crypto conversion in Colombia.",
 
   "compliance.title": "Regulatory compliance",
   "compliance.subtitle": "We operate under Colombia's UIAF framework for VASPs.",

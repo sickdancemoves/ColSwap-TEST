@@ -1,0 +1,153 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+const locale = 'en' as const;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/en/partners/"
+  title={t('partners.title', locale)}
+  description={t('partners.subtitle', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('partners.title', locale)}</h1>
+    <p class="lede">{t('partners.subtitle', locale)}</p>
+
+    <p class="intro">
+      ColSwap coordinates COP↔virtual-asset conversions as a non-custodial layer: we hold no funds
+      at any point. To scale the solution our corporate clients need, we're looking for two kinds of
+      partners.
+    </p>
+
+    <div class="tracks">
+      <article class="track">
+        <h2>Liquidity providers</h2>
+        <p class="track-desc">Crypto-fiat OTC, on-ramp and off-ramp.</p>
+        <p class="track-label">What we bring:</p>
+        <ul>
+          <li>Recurring corporate demand, fully KYB- and KYC-verified</li>
+          <li>High-volume order flow between COP and virtual assets</li>
+          <li>Non-custodial operation: we route assets straight to the client's destination</li>
+          <li>Transaction monitoring and regulatory traceability</li>
+        </ul>
+      </article>
+      <article class="track">
+        <h2>Banking partners</h2>
+        <p class="track-desc">Banking services for the operation.</p>
+        <p class="track-label">What we bring:</p>
+        <ul>
+          <li>Obligated entity in the process of registering with UIAF (VASP)</li>
+          <li>AML program with SARLAFT guidelines and due diligence</li>
+          <li>Monthly reporting and full traceability of the flow of funds</li>
+          <li>Corporate clients with rigorous KYB before transacting</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="why">
+      <h2>Why partner with ColSwap</h2>
+      <p>
+        We operate as a coordination and routing layer, without intermediating funds on our balance
+        sheet. That lowers risk for every party and keeps each operation traceable, with regulatory
+        compliance from day one.
+      </p>
+      <a href={`${base}/en/contact/`} class="btn-cta">{t('cta.becomePartner', locale)}</a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .lede {
+    margin-bottom: 24px;
+  }
+  .intro {
+    max-width: 70ch;
+    color: var(--color-ink-700);
+    margin: 0 0 40px;
+  }
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .track {
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    background: var(--color-paper-50);
+  }
+  .track h2 {
+    margin: 0 0 6px;
+  }
+  .track-desc {
+    color: var(--color-ink-600);
+    margin: 0 0 20px;
+    font-size: var(--text-sm);
+  }
+  .track-label {
+    font-weight: 600;
+    margin: 0 0 10px;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-600);
+  }
+  .track ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .track li {
+    padding-left: 22px;
+    position: relative;
+    font-size: var(--text-sm);
+    color: var(--color-ink-700);
+  }
+  .track li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-violet-500);
+    font-weight: 700;
+  }
+  .why {
+    margin-top: 48px;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: var(--color-purple-50);
+    border: 1px solid var(--color-violet-100);
+    max-width: 80ch;
+  }
+  .why h2 {
+    margin: 0 0 12px;
+  }
+  .why p {
+    margin: 0 0 24px;
+    color: var(--color-ink-700);
+  }
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding-inline: 22px;
+    background: var(--color-yellow-500);
+    color: var(--color-purple-900);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .btn-cta:hover {
+    background: var(--color-yellow-300);
+    color: var(--color-purple-900);
+  }
+  @media (max-width: 700px) {
+    .tracks {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

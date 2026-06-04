@@ -4,6 +4,7 @@
   "nav.pricing": "Precios",
   "nav.business": "Empresas",
   "nav.compliance": "Cumplimiento",
+  "nav.partners": "Aliados",
   "nav.about": "Sobre nosotros",
   "nav.contact": "Contacto",
   "nav.faqs": "Preguntas frecuentes",
@@ -13,6 +14,7 @@
   "cta.signUp": "Crear cuenta",
   "cta.requestQuote": "Solicitar cotización",
   "cta.talkToSales": "Hablar con ventas",
+  "cta.becomePartner": "Conviértete en aliado",
   "cta.learnMore": "Más información",
   "cta.continue": "Continuar",
 
@@ -22,7 +24,7 @@
   "footer.legal.aml": "Política AML",
   "footer.legal.cookies": "Cookies",
   "footer.copyright": "© {year} Paytrium Digital Holding. Todos los derechos reservados.",
-  "footer.regulated": "Registrado ante la UIAF como VASP",
+  "footer.regulated": "En proceso de registro ante la UIAF (VASP)",
 
   "lang.switchTo": "English",
 
@@ -30,8 +32,9 @@
   "home.hero.subtitle": "Plataforma OTC no custodial para empresas y profesionales. Tasas en vivo, sin saldo en custodia, ejecución directa a tu wallet.",
   "home.hero.quoteLabel": "Cotiza ahora",
   "home.hero.salesLabel": "¿Empresa con volumen alto? Habla con nuestro equipo de ventas.",
+  "home.partner.label": "¿Proveedor de liquidez o aliado bancario? Construyamos juntos la capa de conversión COP↔cripto de Colombia.",
   "home.trust.title": "Operamos bajo el marco regulatorio colombiano",
-  "home.trust.uiaf": "Registrado en UIAF",
+  "home.trust.uiaf": "En registro ante UIAF",
   "home.trust.aml": "Programa AML completo",
   "home.trust.kyc": "KYC automatizado",
   "home.trust.kyb": "KYB para empresas",
@@ -67,6 +70,9 @@
 
   "business.title": "ColSwap para empresas",
   "business.subtitle": "KYB acompañado, ejecutivos dedicados, reportes operativos.",
+
+  "partners.title": "Alianzas",
+  "partners.subtitle": "Buscamos proveedores de liquidez y aliados bancarios para escalar la conversión COP↔cripto en Colombia.",
 
   "compliance.title": "Cumplimiento regulatorio",
   "compliance.subtitle": "Operamos bajo el marco UIAF para VASPs en Colombia.",

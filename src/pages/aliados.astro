@@ -1,0 +1,153 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { t } from '@/i18n/t';
+const locale = 'es' as const;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PageLayout
+  locale={locale}
+  currentPath="/aliados/"
+  title={t('partners.title', locale)}
+  description={t('partners.subtitle', locale)}
+>
+  <section class="container-page page-section">
+    <h1>{t('partners.title', locale)}</h1>
+    <p class="lede">{t('partners.subtitle', locale)}</p>
+
+    <p class="intro">
+      ColSwap coordina conversiones COP↔activos virtuales como una capa no custodial: no mantenemos
+      fondos en ningún momento. Para escalar la solución que nuestros clientes corporativos
+      necesitan, buscamos dos tipos de aliados.
+    </p>
+
+    <div class="tracks">
+      <article class="track">
+        <h2>Proveedores de liquidez</h2>
+        <p class="track-desc">OTC cripto-fiat, on-ramp y off-ramp.</p>
+        <p class="track-label">Lo que aportamos:</p>
+        <ul>
+          <li>Demanda corporativa recurrente, con KYB y KYC completos</li>
+          <li>Flujo de órdenes de alto volumen entre COP y activos virtuales</li>
+          <li>Operación no custodial: enrutamos los activos directo al destino del cliente</li>
+          <li>Monitoreo de transacciones y trazabilidad regulatoria</li>
+        </ul>
+      </article>
+      <article class="track">
+        <h2>Aliados bancarios</h2>
+        <p class="track-desc">Servicios bancarios para la operación.</p>
+        <p class="track-label">Lo que aportamos:</p>
+        <ul>
+          <li>Sujeto obligado en proceso de registro ante la UIAF (VASP)</li>
+          <li>Programa AML con lineamientos SARLAFT y debida diligencia</li>
+          <li>Reportes mensuales y trazabilidad completa del flujo de fondos</li>
+          <li>Clientes corporativos con KYB riguroso antes de operar</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="why">
+      <h2>Por qué aliarte con ColSwap</h2>
+      <p>
+        Operamos como capa de coordinación y enrutamiento, sin intermediar fondos en nuestro
+        balance. Esto reduce el riesgo para todas las partes y mantiene cada operación trazable, con
+        cumplimiento regulatorio desde el primer día.
+      </p>
+      <a href={`${base}/contacto/`} class="btn-cta">{t('cta.becomePartner', locale)}</a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .lede {
+    margin-bottom: 24px;
+  }
+  .intro {
+    max-width: 70ch;
+    color: var(--color-ink-700);
+    margin: 0 0 40px;
+  }
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .track {
+    border: 1px solid var(--color-paper-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    background: var(--color-paper-50);
+  }
+  .track h2 {
+    margin: 0 0 6px;
+  }
+  .track-desc {
+    color: var(--color-ink-600);
+    margin: 0 0 20px;
+    font-size: var(--text-sm);
+  }
+  .track-label {
+    font-weight: 600;
+    margin: 0 0 10px;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-600);
+  }
+  .track ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .track li {
+    padding-left: 22px;
+    position: relative;
+    font-size: var(--text-sm);
+    color: var(--color-ink-700);
+  }
+  .track li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-violet-500);
+    font-weight: 700;
+  }
+  .why {
+    margin-top: 48px;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: var(--color-purple-50);
+    border: 1px solid var(--color-violet-100);
+    max-width: 80ch;
+  }
+  .why h2 {
+    margin: 0 0 12px;
+  }
+  .why p {
+    margin: 0 0 24px;
+    color: var(--color-ink-700);
+  }
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding-inline: 22px;
+    background: var(--color-yellow-500);
+    color: var(--color-purple-900);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 120ms ease;
+  }
+  .btn-cta:hover {
+    background: var(--color-yellow-300);
+    color: var(--color-purple-900);
+  }
+  @media (max-width: 700px) {
+    .tracks {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
