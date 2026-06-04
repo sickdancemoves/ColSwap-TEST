@@ -29,11 +29,14 @@ const legalLinks =
 <footer class="site-footer">
   <div class="container-page footer-inner">
     <div class="footer-brand">
-      <div class="brand-mark"></div>
-      <div>
-        <div class="brand-name">ColSwap</div>
-        <div class="brand-tag">{t('footer.tagline', locale)}</div>
-      </div>
+      <img
+        src={`${base}/logo-light.svg`}
+        alt="ColSwap"
+        class="brand-logo"
+        width="150"
+        height="32"
+      />
+      <div class="brand-tag">{t('footer.tagline', locale)}</div>
     </div>
 
     <nav class="footer-legal" aria-label="Legal">
@@ -70,26 +73,18 @@ const legalLinks =
   }
   .footer-brand {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
   }
-  .brand-mark {
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(
-      135deg,
-      var(--color-yellow-500) 0 60%,
-      var(--color-red-500) 60% 100%
-    );
-    border-radius: var(--radius-sm);
-  }
-  .brand-name {
-    font-weight: 700;
-    color: var(--color-paper-50);
+  .brand-logo {
+    display: block;
+    height: 32px;
+    width: auto;
   }
   .brand-tag {
     font-size: var(--text-xs);
-    color: var(--color-ink-400);
+    color: var(--color-paper-200);
   }
 
   .footer-legal ul {

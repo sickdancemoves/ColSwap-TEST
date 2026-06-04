@@ -37,8 +37,7 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
 <header class="site-header">
   <div class="container-page header-inner">
     <a href={`${base}${homeHref}`} class="brand" aria-label="ColSwap">
-      <span class="brand-mark"></span>
-      <span class="brand-name">ColSwap</span>
+      <img src={`${base}/logo.svg`} alt="ColSwap" class="brand-logo" width="160" height="34" />
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
@@ -84,23 +83,13 @@ const appBaseUrl = import.meta.env.PUBLIC_APP_BASE_URL || 'https://app.colswap.t
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
-    color: var(--color-ink-900);
-    font-weight: 700;
-    font-size: var(--text-md);
   }
 
-  .brand-mark {
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    background: linear-gradient(
-      135deg,
-      var(--color-yellow-500) 0 60%,
-      var(--color-red-500) 60% 100%
-    );
-    border-radius: var(--radius-sm);
+  .brand-logo {
+    display: block;
+    height: 34px;
+    width: auto;
   }
 
   .primary-nav {

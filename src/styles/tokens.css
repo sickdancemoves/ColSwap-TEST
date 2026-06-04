@@ -1,37 +1,69 @@
 /* src/styles/tokens.css
  * Single source of truth for colors, type, spacing.
- * Placeholder identity: Colombian-inspired yellow + red accents.
- * Final brand identity will replace these tokens.
+ * ColSwap brand identity (ID V1):
+ *   Deep Purple  #340E8C — core brand & primary text
+ *   Violet       #781FFF — accent & interactive states
+ *   Crimson      #E6004C — alerts & emphasis
+ *   Yellow       #FFDD00 — highlight & call-to-action
  */
 @theme {
-  /* Brand — Colombian yellow */
-  --color-yellow-100: #fff7cc;
-  --color-yellow-300: #ffe56b;
-  --color-yellow-500: #ffd100;
-  --color-yellow-700: #d6a800;
-  --color-yellow-900: #8a6b00;
+  /* Deep Purple — core brand & primary text */
+  --color-purple-50: #eee8ff;
+  --color-purple-100: #a6a1da;
+  --color-purple-300: #675fb4;
+  --color-purple-500: #340e8c; /* base */
+  --color-purple-700: #2b0b74;
+  --color-purple-800: #22085d;
+  --color-purple-900: #1a0647;
 
-  /* Accent — Colombian red */
-  --color-red-100: #fbdce1;
-  --color-red-300: #e8616f;
-  --color-red-500: #c8102e;
-  --color-red-700: #8e0b20;
+  /* Violet — accent & interactive states */
+  --color-violet-50: #e8d9ff;
+  --color-violet-100: #bca7ff;
+  --color-violet-300: #9771ff;
+  --color-violet-500: #781fff; /* base */
+  --color-violet-700: #6319d2;
+  --color-violet-800: #5014a8;
+  --color-violet-900: #3d0e82;
 
-  /* Neutrals — warm-paper rather than stark white */
-  --color-ink-900: #0e0e10;
-  --color-ink-700: #2a2a2e;
-  --color-ink-600: #4a4a52;
-  --color-ink-400: #8a8a92;
-  --color-ink-200: #c8c8ce;
-  --color-paper-50: #fafaf7;
-  --color-paper-100: #f2efe7;
-  --color-paper-200: #e9e5da;
-  --color-paper-900: #1a1a1c;
+  /* Crimson — alerts & emphasis */
+  --color-crimson-50: #ffd6e5;
+  --color-crimson-100: #fda0af;
+  --color-crimson-300: #f4687d;
+  --color-crimson-500: #e6004c; /* base */
+  --color-crimson-700: #c0003f;
+  --color-crimson-800: #9c0034;
+  --color-crimson-900: #7a0028;
+
+  /* Yellow — highlight & call-to-action */
+  --color-yellow-50: #fffbe0;
+  --color-yellow-100: #fff2ae;
+  --color-yellow-300: #ffe876;
+  --color-yellow-500: #ffdd00; /* base */
+  --color-yellow-700: #d0b300;
+  --color-yellow-800: #a48d00;
+  --color-yellow-900: #7a6800;
+
+  /* Back-compat aliases — legacy "red" tokens now resolve to brand Crimson */
+  --color-red-100: var(--color-crimson-50);
+  --color-red-300: var(--color-crimson-300);
+  --color-red-500: var(--color-crimson-500);
+  --color-red-700: var(--color-crimson-700);
+
+  /* Neutrals — cool, faintly purple-tinted to sit under the brand */
+  --color-ink-900: #1a0647; /* primary text — deep-purple black */
+  --color-ink-700: #3a3357;
+  --color-ink-600: #565072;
+  --color-ink-400: #8b86a3;
+  --color-ink-200: #d4d1e3;
+  --color-paper-50: #fbfbff;
+  --color-paper-100: #f4f2fb;
+  --color-paper-200: #e7e4f2;
+  --color-paper-900: #1a0647; /* deep-purple surface for inverted sections */
 
   /* Semantic */
   --color-success: #1b7f3b;
   --color-warning: var(--color-yellow-700);
-  --color-danger: var(--color-red-500);
+  --color-danger: var(--color-crimson-500);
 
   /* Typography */
   --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;

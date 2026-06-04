@@ -37,6 +37,7 @@
     font-weight: 700;
     letter-spacing: -0.01em;
     line-height: 1.15;
+    color: var(--color-purple-500);
   }
 
   h1 {
@@ -60,7 +61,7 @@
   }
 
   a:hover {
-    color: var(--color-red-700);
+    color: var(--color-violet-500);
   }
 
   button {
@@ -76,7 +77,7 @@
 
   /* Focus ring */
   *:focus-visible {
-    outline: 2px solid var(--color-yellow-500);
+    outline: 2px solid var(--color-violet-500);
     outline-offset: 2px;
   }
 }
